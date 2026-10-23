@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GLOBAL-TRACK INTL - Cargo Tracking: GOF-2026-NRO-889</title>
+  <meta name="description" content="Official cargo tracking for container shipment GOF-2026-NRO-889 - Heavy Cargo (1 Pallet) - Nero Assoluto Granite from Genoa to Surakarta." />
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            corporate: {
+              navy: '#0f2347',
+              navyDark: '#0a1730',
+              navyLight: '#1b3a6b',
+              green: '#10b981',
+              greenDark: '#059669',
+              greenLight: '#d1fae5',
+              amber: '#f59e0b',
+              amberLight: '#fef3c7',
+              red: '#ef4444'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+    }
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+      font-variant-numeric: tabular-nums;
+    }
+    /* Timeline stem connector line */
+    .timeline-connector {
+      position: absolute;
+      top: 2rem;
+      bottom: -1rem;
+      left: 1.25rem;
+      width: 2px;
+      background-color: #e2e8f0;
+      transform: translateX(-50%);
+    }
+    .timeline-item:last-child .timeline-connector {
+      display: none;
+    }
+    @media print {
+      .no-print { display: none !important; }
+      body { background: white !important; }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-slate-50 text-slate-900 antialiased selection:bg-emerald-100 selection:text-emerald-900">
+
+  <!-- TOP BAR / HEADER (Top Bar Contract) -->
+  <header class="bg-[#0f2347] text-white border-b border-[#1b3a6b] sticky top-0 z-40 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+      
+      <!-- Zone 1: Brand Wordmark -->
+      <a href="#" class="flex items-center gap-2.5 whitespace-nowrap shrink-0 group">
+        <div class="w-9 h-9 rounded bg-emerald-500 flex items-center justify-center text-slate-950 font-extrabold text-lg tracking-wider shadow-inner">
+          G
+        </div>
+        <div class="flex flex-col">
+          <span class="text-base sm:text-lg font-extrabold tracking-tight text-white leading-none">
+            GLOBAL-TRACK <span class="text-emerald-400 font-semibold">INTL</span>
+          </span>
+          <span class="text-[10px] tracking-widest text-slate-300 font-mono uppercase mt-0.5">Maritime & Multimodal Freight</span>
+        </div>
+      </a>
+
+      <!-- Zone 2: Pre-filled Tracking Search Bar -->
+      <div class="flex-1 max-w-md mx-2 sm:mx-6">
+        <form id="search-form" onsubmit="handleSearch(event)" class="relative flex items-center">
+          <input 
+            type="text" 
+            id="tracking-input"
+            value="GOF-2026-NRO-889" 
+            placeholder="Enter Bill of Lading or Container ID..."
+            class="w-full h-10 pl-3.5 pr-20 text-xs sm:text-sm bg-[#162e56] border border-[#2a4e8c] rounded text-white font-mono placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent transition-all uppercase"
+          />
+          <button 
+            type="submit"
+            class="absolute right-1 px-3 py-1.5 h-8 bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-bold rounded transition-colors flex items-center gap-1.5 shadow-sm"
+          >
+            <span>Track</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </button>
+        </form>
+      </div>
+
+      <!-- Zone 3: Quick Corporate Utilities -->
+      <div class="flex items-center gap-2 shrink-0 no-print">
+        <button 
+          onclick="window.print()" 
+          class="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-200 hover:text-white bg-white/10 hover:bg-white/15 border border-white/10 rounded transition-colors"
+          title="Print official tracking report"
+        >
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4H7v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+          <span>Print Waybill</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- SUB-NAV / CONTEXT STRIP -->
+  <div class="bg-white border-b border-slate-200 py-2.5 px-4 sm:px-6 shadow-xs text-xs text-slate-600">
+    <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-2">
+        <span class="font-semibold text-slate-900">Tracking Reference:</span>
+        <span class="font-mono bg-slate-100 text-slate-800 px-2 py-0.5 rounded border border-slate-300 font-semibold text-xs">GOF-2026-NRO-889</span>
+        <button onclick="copyTrackingNumber()" class="text-slate-400 hover:text-slate-700 transition-colors" title="Copy tracking number">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+        </button>
+        <span id="copy-badge" class="text-[11px] text-emerald-600 font-medium hidden">Copied!</span>
+      </div>
+
+      <div class="flex items-center gap-4 text-xs">
+        <span class="text-slate-500">Service: <strong class="text-slate-800">Ocean Heavy Freight (LCL)</strong></span>
+        <span class="text-slate-300">|</span>
+        <span class="text-slate-500">Carrier: <strong class="text-slate-800">MSC Bellissima / Voy 042E</strong></span>
+        <span class="text-slate-300">|</span>
+        <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 font-semibold flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+          Delivered 08 May 2026
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8 flex-1 w-full space-y-6">
+
+    <!-- REQUIREMENT 2: SHIPMENT INFO BOX -->
+    <section class="bg-white rounded-lg border border-slate-200 shadow-sm overflow-hidden">
+      
+      <!-- Top banner of card: Status Bar -->
+      <div class="bg-gradient-to-r from-[#0f2347] to-[#17386d] text-white px-5 py-4 flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <div class="text-[11px] tracking-wider uppercase font-mono text-slate-300">Official Consignment Ledger</div>
+          <h1 class="text-lg sm:text-xl font-bold tracking-tight text-white mt-0.5">
+            Heavy Cargo (1 Pallet) - Nero Assoluto Granite
+          </h1>
+        </div>
+        
+        <!-- Status Pill: DELIVERED -->
+        <div class="flex items-center gap-3">
+          <div class="text-right hidden sm:block">
+            <div class="text-[10px] uppercase font-mono tracking-wider text-slate-300">Consignment State</div>
+            <div class="text-xs text-emerald-300 font-medium">Signed & Cleared</div>
+          </div>
+          <div class="px-4 py-2 bg-emerald-500 text-slate-950 font-black text-sm tracking-wider rounded border border-emerald-400 flex items-center gap-2 shadow-sm uppercase">
+            <svg class="w-4 h-4 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+            Status: DELIVERED
+          </div>
+        </div>
+      </div>
+
+      <!-- Core 4 Required Fields Grid -->
+      <div class="p-5 sm:p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 bg-white border-b border-slate-100">
+        
+        <!-- Field 1: Shipment -->
+        <div class="p-3.5 bg-slate-50 rounded border border-slate-200">
+          <span class="text-[11px] font-mono uppercase text-slate-500 tracking-wider block mb-1">Shipment</span>
+          <p class="text-sm font-bold text-slate-900 leading-snug">
+            Heavy Cargo (1 Pallet) - Nero Assoluto Granite
+          </p>
+          <span class="text-xs text-slate-500 font-mono mt-1.5 block">1,420 kg · ISPM-15 Treated Crate</span>
+        </div>
+
+        <!-- Field 2: Shipper -->
+        <div class="p-3.5 bg-slate-50 rounded border border-slate-200">
+          <span class="text-[11px] font-mono uppercase text-slate-500 tracking-wider block mb-1">Shipper</span>
+          <p class="text-sm font-bold text-slate-900">
+            Marmo Italia S.p.A
+          </p>
+          <p class="text-xs text-slate-600 mt-1 leading-tight">
+            Via Dorsale 14, Massa (MS), Italy
+          </p>
+          <span class="text-[11px] font-mono text-slate-400 mt-1 block">Origin: Port of Genoa, IT</span>
+        </div>
+
+        <!-- Field 3: Consignee -->
+        <div class="p-3.5 bg-slate-50 rounded border border-slate-200">
+          <span class="text-[11px] font-mono uppercase text-slate-500 tracking-wider block mb-1">Consignee</span>
+          <p class="text-sm font-bold text-slate-900">
+            CV Abid Granit Internasional
+          </p>
+          <p class="text-xs text-slate-600 mt-1 leading-tight">
+            Jl. Slamet Riyadi No. 128, Surakarta, ID
+          </p>
+          <span class="text-[11px] font-mono text-emerald-700 mt-1 block font-medium">Verified Consignee Account</span>
+        </div>
+
+        <!-- Field 4: Status -->
+        <div class="p-3.5 bg-emerald-50/60 rounded border border-emerald-200 flex flex-col justify-between">
+          <div>
+            <span class="text-[11px] font-mono uppercase text-emerald-800 tracking-wider block mb-1">Status</span>
+            <div class="text-base font-extrabold text-emerald-700 uppercase flex items-center gap-1.5">
+              <svg class="w-4 h-4 text-emerald-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              DELIVERED
+            </div>
+            <p class="text-xs text-slate-600 mt-1">Delivered on 08 May 2026, 14:30</p>
+          </div>
+          <span class="text-[11px] font-mono text-slate-500 mt-2 block">Proof of Delivery Verified</span>
+        </div>
+
+      </div>
+
+      <!-- Quick Route Stepper -->
+      <div class="px-5 py-3.5 bg-slate-50/80 text-xs flex flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center gap-2 sm:gap-3 flex-wrap">
+          <span class="font-semibold text-slate-700">Freight Route:</span>
+          <span class="font-medium text-slate-900">Genoa, IT</span>
+          <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          <span class="font-medium text-slate-900">Singapore (Transit Hub)</span>
+          <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          <span class="font-medium text-slate-900">Semarang (Tanjung Emas)</span>
+          <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          <span class="font-bold text-emerald-700">Surakarta (Consignee)</span>
+        </div>
+        <div class="font-mono text-slate-500 text-[11px]">
+          Bill of Lading: <strong class="text-slate-800">BL-IT26-894120</strong>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- CUSTOMS AUDIT NOTICE (Context for the Critical Event) -->
+    <div class="bg-amber-50 border border-amber-300 rounded-lg p-4 text-xs text-amber-900 flex items-start gap-3 shadow-xs">
+      <div class="p-1.5 bg-amber-500 text-white rounded shrink-0 mt-0.5">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+      </div>
+      <div class="flex-1">
+        <div class="font-bold text-amber-950 flex items-center gap-2">
+          <span>Inspection Audit Note: Historical Critical Event Recorded</span>
+          <span class="text-[10px] bg-amber-200/80 text-amber-900 px-2 py-0.2 rounded font-mono font-bold uppercase">Resolved & Released</span>
+        </div>
+        <p class="text-amber-800 mt-1 leading-relaxed">
+          The consignment was held at Port of Tanjung Emas on <strong>01 May 2026</strong> under customs red-line directive #PPJK-26051-A for mineral density and HS-Code stone verification. Following thorough physical examination, clearance was formally granted on <strong>05 May 2026</strong>.
+        </p>
+      </div>
+    </div>
+
+    <!-- REQUIREMENT 3: VERTICAL TIMELINE (THE CORE FEATURE) -->
+    <section class="bg-white rounded-lg border border-slate-200 shadow-sm p-6 sm:p-8">
+      
+      <div class="flex flex-wrap items-center justify-between pb-6 border-b border-slate-200 gap-4">
+        <div>
+          <span class="text-xs font-mono uppercase text-slate-500 tracking-wider block">Real-time Milestone Audit</span>
+          <h2 class="text-xl font-extrabold text-slate-900 tracking-tight mt-0.5">
+            Consignment Tracking History
+          </h2>
+        </div>
+        <div class="flex items-center gap-2 text-xs">
+          <span class="flex items-center gap-1.5 text-slate-600">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> Completed
+          </span>
+          <span class="text-slate-300">·</span>
+          <span class="flex items-center gap-1.5 text-slate-600">
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span> Critical Warning
+          </span>
+          <span class="text-slate-300">·</span>
+          <span class="flex items-center gap-1.5 text-slate-600">
+            <span class="w-2.5 h-2.5 rounded-full bg-slate-400"></span> Transit / Terminal
+          </span>
+        </div>
+      </div>
+
+      <!-- Vertical Timeline List -->
+      <div class="mt-8 relative space-y-8 pl-2 sm:pl-4">
+
+        <!-- EVENT 1: 08 May 2026, 14:30 - Delivered to Consignee (Surakarta, ID) - [Green icon] -->
+        <div class="timeline-item relative flex items-start gap-4 sm:gap-6 group">
+          <div class="timeline-connector"></div>
+          
+          <!-- Icon Dot: GREEN -->
+          <div class="relative z-10 w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center shrink-0 ring-4 ring-emerald-100 shadow-sm">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+          </div>
+
+          <!-- Content Card -->
+          <div class="flex-1 bg-white border border-emerald-200 rounded-lg p-4 sm:p-5 shadow-xs hover:border-emerald-300 transition-colors">
+            <div class="flex flex-wrap items-baseline justify-between gap-2">
+              <span class="text-xs sm:text-sm font-bold font-mono text-emerald-800">
+                08 May 2026, 14:30
+              </span>
+              <span class="text-[11px] font-semibold uppercase tracking-wider text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded">
+                Final Delivery
+              </span>
+            </div>
+
+            <h3 class="text-base sm:text-lg font-bold text-slate-900 mt-1">
+              Delivered to Consignee (Surakarta, ID)
+            </h3>
+
+            <p class="text-xs sm:text-sm text-slate-600 mt-1.5">
+              Consignment successfully delivered to CV Abid Granit Internasional warehouse facility. Cargo pallet received intact, straps inspected, and delivery receipt counter-signed by warehouse manager.
+            </p>
+
+            <div class="mt-3 pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between text-xs text-slate-500 gap-2 font-mono">
+              <div>Facility: Surakarta Receiving Depot · Dock 2</div>
+              <div class="text-emerald-700 font-semibold">POD Verified: Abid Pratama</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- EVENT 2: 05 May 2026, 09:15 - Customs Clearance Completed (Semarang, ID) - [Green icon] -->
+        <div class="timeline-item relative flex items-start gap-4 sm:gap-6 group">
+          <div class="timeline-connector"></div>
+          
+          <!-- Icon Dot: GREEN -->
+          <div class="relative z-10 w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center shrink-0 ring-4 ring-emerald-100 shadow-sm">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+
+          <!-- Content Card -->
+          <div class="flex-1 bg-white border border-slate-200 rounded-lg p-4 sm:p-5 shadow-xs hover:border-slate-300 transition-colors">
+            <div class="flex flex-wrap items-baseline justify-between gap-2">
+              <span class="text-xs sm:text-sm font-bold font-mono text-slate-700">
+                05 May 2026, 09:15
+              </span>
+              <span class="text-[11px] font-semibold uppercase tracking-wider text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded">
+                Customs Released
+              </span>
+            </div>
+
+            <h3 class="text-base sm:text-lg font-bold text-slate-900 mt-1">
+              Customs Clearance Completed (Semarang, ID)
+            </h3>
+
+            <p class="text-xs sm:text-sm text-slate-600 mt-1.5">
+              Import customs clearance granted by KPPBC TMP Tanjung Emas Semarang. SPPB (Surat Persetujuan Pengeluaran Barang) issued. Cargo released from bonded yard for inland dispatch.
+            </p>
+
+            <div class="mt-3 pt-3 border-t border-slate-100 text-xs text-slate-500 font-mono">
+              Customs Notice: SPPB #084920/WBC.10/2026 · Duty & Import Taxes Cleared
+            </div>
+          </div>
+        </div>
+
+        <!-- EVENT 3: 01 May 2026, 08:00 - [CRITICAL STATUS] Awaiting Customs Inspection (Port of Tanjung Emas, ID) - [Red/Orange warning icon - visually highlight this date] -->
+        <div class="timeline-item relative flex items-start gap-4 sm:gap-6 group">
+          <div class="timeline-connector"></div>
+          
+          <!-- Icon Dot: RED/ORANGE WARNING ICON -->
+          <div class="relative z-10 w-10 h-10 rounded-full bg-amber-500 text-white flex items-center justify-center shrink-0 ring-4 ring-rose-200 shadow-md">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+          </div>
+
+          <!-- Content Card: VISUALLY HIGHLIGHTED (Amber/Red border, warm background, highlighted badge) -->
+          <div class="flex-1 bg-amber-50/80 border-2 border-amber-400 rounded-lg p-4 sm:p-5 shadow-sm">
+            <div class="flex flex-wrap items-baseline justify-between gap-2">
+              
+              <!-- VISUALLY HIGHLIGHTED DATE -->
+              <div class="inline-flex items-center gap-2">
+                <span class="px-2.5 py-1 bg-rose-600 text-white font-mono font-bold text-xs sm:text-sm rounded shadow-xs">
+                  01 May 2026, 08:00
+                </span>
+                <span class="text-xs text-rose-700 font-bold uppercase tracking-wider">
+                  Critical Date
+                </span>
+              </div>
+
+              <span class="text-[11px] font-extrabold uppercase tracking-wider text-rose-700 bg-rose-100 border border-rose-300 px-2.5 py-0.5 rounded shadow-xs animate-pulse">
+                Critical Exception
+              </span>
+            </div>
+
+            <h3 class="text-base sm:text-lg font-extrabold text-amber-950 mt-2 flex items-center gap-2">
+              <span class="text-rose-600">[CRITICAL STATUS]</span> Awaiting Customs Inspection (Port of Tanjung Emas, ID)
+            </h3>
+
+            <p class="text-xs sm:text-sm text-amber-900 mt-2 leading-relaxed">
+              Consignment flagged for Indonesian Customs Jalur Merah (Red Channel mandatory physical inspection). Cargo transferred to bonded quarantine yard at TPS Graha Segara. Documents submitted for radiographic container scan and physical stone slab dimension audit.
+            </p>
+
+            <div class="mt-3.5 pt-3 border-t border-amber-200/80 grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-amber-900 font-mono">
+              <div>Ref: Red Channel Notice PPJK-26051-A</div>
+              <div class="sm:text-right">Location: TPS Graha Segara Inspection Bay 4</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- EVENT 4: 28 Apr 2026, 18:45 - Vessel Arrived at Destination Port (Semarang, ID) - [Gray/Neutral icon] -->
+        <div class="timeline-item relative flex items-start gap-4 sm:gap-6 group">
+          <div class="timeline-connector"></div>
+          
+          <!-- Icon Dot: GRAY/NEUTRAL ICON -->
+          <div class="relative z-10 w-10 h-10 rounded-full bg-slate-400 text-white flex items-center justify-center shrink-0 ring-4 ring-slate-100 shadow-sm">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          </div>
+
+          <!-- Content Card -->
+          <div class="flex-1 bg-white border border-slate-200 rounded-lg p-4 sm:p-5 shadow-xs hover:border-slate-300 transition-colors">
+            <div class="flex flex-wrap items-baseline justify-between gap-2">
+              <span class="text-xs sm:text-sm font-semibold font-mono text-slate-600">
+                28 Apr 2026, 18:45
+              </span>
+              <span class="text-[11px] font-medium uppercase tracking-wider text-slate-500 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded">
+                Port Arrival
+              </span>
+            </div>
+
+            <h3 class="text-base sm:text-lg font-bold text-slate-800 mt-1">
+              Vessel Arrived at Destination Port (Semarang, ID)
+            </h3>
+
+            <p class="text-xs sm:text-sm text-slate-600 mt-1.5">
+              Ocean vessel MSC BELLISSIMA berthed at Terminal Peti Kemas Semarang (TPKS). Container discharged to dockside container marshalling area.
+            </p>
+
+            <div class="mt-3 pt-3 border-t border-slate-100 text-xs text-slate-500 font-mono">
+              Vessel: MSC BELLISSIMA · Berth 03 · Port of Tanjung Emas
+            </div>
+          </div>
+        </div>
+
+        <!-- EVENT 5: 15 Apr 2026, 11:20 - In Transit - Arrived at Transit Hub (Singapore, SG) - [Gray/Neutral icon] -->
+        <div class="timeline-item relative flex items-start gap-4 sm:gap-6 group">
+          <div class="timeline-connector"></div>
+          
+          <!-- Icon Dot: GRAY/NEUTRAL ICON -->
+          <div class="relative z-10 w-10 h-10 rounded-full bg-slate-400 text-white flex items-center justify-center shrink-0 ring-4 ring-slate-100 shadow-sm">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
+          </div>
+
+          <!-- Content Card -->
+          <div class="flex-1 bg-white border border-slate-200 rounded-lg p-4 sm:p-5 shadow-xs hover:border-slate-300 transition-colors">
+            <div class="flex flex-wrap items-baseline justify-between gap-2">
+              <span class="text-xs sm:text-sm font-semibold font-mono text-slate-600">
+                15 Apr 2026, 11:20
+              </span>
+              <span class="text-[11px] font-medium uppercase tracking-wider text-slate-500 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded">
+                Transshipment Hub
+              </span>
+            </div>
+
+            <h3 class="text-base sm:text-lg font-bold text-slate-800 mt-1">
+              In Transit - Arrived at Transit Hub (Singapore, SG)
+            </h3>
+
+            <p class="text-xs sm:text-sm text-slate-600 mt-1.5">
+              Transshipment cargo handled at PSA Singapore Pasir Panjang Terminal. Consolidation processed for regional Indonesian port connection.
+            </p>
+
+            <div class="mt-3 pt-3 border-t border-slate-100 text-xs text-slate-500 font-mono">
+              Hub: PSA Singapore Pasir Panjang · Connecting feeder scheduled
+            </div>
+          </div>
+        </div>
+
+        <!-- EVENT 6: 20 Mar 2026, 10:00 - Shipment Picked Up, Origin Facility (Genoa, IT) - [Gray/Neutral icon] -->
+        <div class="timeline-item relative flex items-start gap-4 sm:gap-6 group">
+          
+          <!-- Icon Dot: GRAY/NEUTRAL ICON -->
+          <div class="relative z-10 w-10 h-10 rounded-full bg-slate-400 text-white flex items-center justify-center shrink-0 ring-4 ring-slate-100 shadow-sm">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/></svg>
+          </div>
+
+          <!-- Content Card -->
+          <div class="flex-1 bg-white border border-slate-200 rounded-lg p-4 sm:p-5 shadow-xs hover:border-slate-300 transition-colors">
+            <div class="flex flex-wrap items-baseline justify-between gap-2">
+              <span class="text-xs sm:text-sm font-semibold font-mono text-slate-600">
+                20 Mar 2026, 10:00
+              </span>
+              <span class="text-[11px] font-medium uppercase tracking-wider text-slate-500 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded">
+                Origin Pick-up
+              </span>
+            </div>
+
+            <h3 class="text-base sm:text-lg font-bold text-slate-800 mt-1">
+              Shipment Picked Up, Origin Facility (Genoa, IT)
+            </h3>
+
+            <p class="text-xs sm:text-sm text-slate-600 mt-1.5">
+              Consignment received from Marmo Italia S.p.A quarry production warehouse. Heavy pallet export wooden crate weighed, measured, and sealed into ocean container.
+            </p>
+
+            <div class="mt-3 pt-3 border-t border-slate-100 text-xs text-slate-500 font-mono">
+              Origin: Genoa Port Terminal (PSA Genova Pra) · Container MSKU-741928-4
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- CARGO SPECIFICATIONS & CONTAINER DETAILS -->
+    <section class="bg-white rounded-lg border border-slate-200 shadow-sm p-6">
+      <h3 class="text-base font-bold text-slate-900 tracking-tight mb-4 flex items-center gap-2">
+        <svg class="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        Consignment Technical Specifications
+      </h3>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 text-xs font-mono">
+        <div class="p-3 bg-slate-50 rounded border border-slate-200">
+          <div class="text-slate-400 text-[10px] uppercase">Container No.</div>
+          <div class="font-bold text-slate-800 mt-0.5">MSKU-741928-4</div>
+        </div>
+        <div class="p-3 bg-slate-50 rounded border border-slate-200">
+          <div class="text-slate-400 text-[10px] uppercase">Customs Seal</div>
+          <div class="font-bold text-slate-800 mt-0.5">IT-CUS-991204</div>
+        </div>
+        <div class="p-3 bg-slate-50 rounded border border-slate-200">
+          <div class="text-slate-400 text-[10px] uppercase">Gross Weight</div>
+          <div class="font-bold text-slate-800 mt-0.5">1,420.00 KG</div>
+        </div>
+        <div class="p-3 bg-slate-50 rounded border border-slate-200">
+          <div class="text-slate-400 text-[10px] uppercase">Package Type</div>
+          <div class="font-bold text-slate-800 mt-0.5">1 Heavy Pallet</div>
+        </div>
+        <div class="p-3 bg-slate-50 rounded border border-slate-200">
+          <div class="text-slate-400 text-[10px] uppercase">Incoterms</div>
+          <div class="font-bold text-slate-800 mt-0.5">CIF Semarang</div>
+        </div>
+        <div class="p-3 bg-slate-50 rounded border border-slate-200">
+          <div class="text-slate-400 text-[10px] uppercase">Customs Entry</div>
+          <div class="font-bold text-emerald-700 mt-0.5">PIB BC 2.0 Cleared</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- CORPORATE FOOTER -->
+  <footer class="bg-[#0a1730] text-slate-400 text-xs border-t border-[#1b3a6b] mt-12 py-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <span class="font-bold text-white tracking-tight">GLOBAL-TRACK INTL</span>
+        <span class="mx-2">·</span>
+        <span>Independent International Freight Tracking & Marine Audit Ledger</span>
+      </div>
+      <div class="font-mono text-[11px] text-slate-500">
+        System Node ID: ID-SRG-2026 · Encrypted TLS 1.3 Verified
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function copyTrackingNumber() {
+      const code = 'GOF-2026-NRO-889';
+      navigator.clipboard.writeText(code).then(() => {
+        const badge = document.getElementById('copy-badge');
+        badge.classList.remove('hidden');
+        setTimeout(() => badge.classList.add('hidden'), 2000);
+      });
+    }
+
+    function handleSearch(e) {
+      e.preventDefault();
+      const val = document.getElementById('tracking-input').value.trim();
+      if (!val) return;
+      if (val.toUpperCase() === 'GOF-2026-NRO-889') {
+        alert('Displaying latest real-time tracking data for: ' + val.toUpperCase());
+      } else {
+        alert('Tracking query submitted for ' + val.toUpperCase() + '. Demo consignment data is loaded for GOF-2026-NRO-889.');
+      }
+    }
+  </script>
+</body>
+</html>
