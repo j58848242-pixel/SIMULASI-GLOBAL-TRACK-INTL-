@@ -82,33 +82,61 @@
                 <div>
                     <div class="flex items-center space-x-2">
                         <span class="text-lg sm:text-xl font-extrabold tracking-wider leading-none">GLOBAL-TRACK</span>
-                        <span class="hidden sm:inline-block bg-emerald-500/20 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded border border-emerald-500/30 uppercase tracking-widest">Live Gateway</span>
+                        <span class="hidden sm:inline-block bg-emerald-500/20 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded border border-emerald-500/30 uppercase tracking-widest" data-i18n="live_gateway">Live Gateway</span>
                     </div>
-                    <span class="text-xs tracking-widest text-slate-400 font-medium uppercase">International Maritime & Intermodal</span>
+                    <span class="text-xs tracking-widest text-slate-400 font-medium uppercase" data-i18n="sub_brand">International Maritime & Intermodal</span>
                 </div>
             </div>
 
-            <!-- Desktop Nav Links -->
-            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+            <!-- Desktop Nav Links & Language Switcher -->
+            <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
                 <a href="#" class="text-corporate-emerald font-semibold transition hover:text-emerald-400 flex items-center space-x-1.5">
                     <i class="fa-solid fa-location-dot"></i>
-                    <span>Tracking</span>
+                    <span data-i18n="nav_tracking">Tracking</span>
                 </a>
-                <a href="#" class="text-slate-300 hover:text-white transition">Schedules</a>
-                <a href="#" class="text-slate-300 hover:text-white transition">Services</a>
-                <a href="#" class="text-slate-300 hover:text-white transition">Support</a>
-                <!-- Language Selector -->
+                <a href="#" class="text-slate-300 hover:text-white transition" data-i18n="nav_schedules">Schedules</a>
+                <a href="#" class="text-slate-300 hover:text-white transition" data-i18n="nav_services">Services</a>
+                <a href="#" class="text-slate-300 hover:text-white transition" data-i18n="nav_support">Support</a>
+
+                <!-- Language Selector Dropdown -->
                 <div class="relative inline-block text-left">
-                    <button class="bg-slate-800 text-slate-300 px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-2 border border-slate-700 hover:text-white transition">
-                        <i class="fa-solid fa-globe"></i>
-                        <span>EN (US)</span>
-                        <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                    <button onclick="toggleLangDropdown(event)" id="langDropdownBtn" class="bg-slate-800 text-slate-200 px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-2 border border-slate-700 hover:bg-slate-700 hover:text-white transition">
+                        <i class="fa-solid fa-globe text-corporate-emerald"></i>
+                        <span id="currentLangLabel">English (EN)</span>
+                        <i class="fa-solid fa-chevron-down text-[10px] ml-1"></i>
                     </button>
+                    <!-- Dropdown Menu -->
+                    <div id="langDropdownMenu" class="hidden absolute right-0 mt-2 w-48 rounded-xl bg-slate-900 border border-slate-700 shadow-2xl py-2 z-50 text-xs">
+                        <button onclick="selectLanguage('en')" class="w-full text-left px-4 py-2 text-slate-200 hover:bg-slate-800 hover:text-emerald-400 flex items-center justify-between transition">
+                            <span class="flex items-center space-x-2"><span>🇺🇸</span><span class="font-medium">English</span></span>
+                            <span class="font-mono text-[10px] text-slate-400">EN</span>
+                        </button>
+                        <button onclick="selectLanguage('it')" class="w-full text-left px-4 py-2 text-slate-200 hover:bg-slate-800 hover:text-emerald-400 flex items-center justify-between transition">
+                            <span class="flex items-center space-x-2"><span>🇮🇹</span><span class="font-medium">Italiano</span></span>
+                            <span class="font-mono text-[10px] text-slate-400">IT</span>
+                        </button>
+                        <button onclick="selectLanguage('id')" class="w-full text-left px-4 py-2 text-slate-200 hover:bg-slate-800 hover:text-emerald-400 flex items-center justify-between transition">
+                            <span class="flex items-center space-x-2"><span>🇮🇩</span><span class="font-medium">Bahasa Indonesia</span></span>
+                            <span class="font-mono text-[10px] text-slate-400">ID</span>
+                        </button>
+                        <button onclick="selectLanguage('zh')" class="w-full text-left px-4 py-2 text-slate-200 hover:bg-slate-800 hover:text-emerald-400 flex items-center justify-between transition">
+                            <span class="flex items-center space-x-2"><span>🇨🇳</span><span class="font-medium">中文 (Mandarin)</span></span>
+                            <span class="font-mono text-[10px] text-slate-400">ZH</span>
+                        </button>
+                    </div>
                 </div>
             </nav>
 
-            <!-- Mobile Menu Button -->
-            <div class="md:hidden flex items-center">
+            <!-- Mobile Controls (Language & Menu Toggle) -->
+            <div class="md:hidden flex items-center space-x-2">
+                <!-- Mobile Lang Selector -->
+                <select onchange="selectLanguage(this.value)" id="mobileLangSelect" class="bg-slate-800 text-slate-200 text-xs font-semibold rounded-lg px-2 py-1 border border-slate-700 focus:outline-none">
+                    <option value="en">🇺🇸 EN</option>
+                    <option value="it">🇮🇹 IT</option>
+                    <option value="id">🇮🇩 ID</option>
+                    <option value="zh">🇨🇳 ZH</option>
+                </select>
+
                 <button onclick="toggleMobileMenu()" class="text-slate-300 hover:text-white p-2">
                     <i class="fa-solid fa-bars text-xl" id="mobileMenuIcon"></i>
                 </button>
@@ -117,10 +145,10 @@
 
         <!-- Mobile Menu Dropdown -->
         <div id="mobileMenu" class="hidden md:hidden bg-slate-900 px-4 pt-2 pb-4 border-t border-slate-800 space-y-2">
-            <a href="#" class="block py-2 text-corporate-emerald font-semibold">Tracking</a>
-            <a href="#" class="block py-2 text-slate-300 hover:text-white">Schedules</a>
-            <a href="#" class="block py-2 text-slate-300 hover:text-white">Services</a>
-            <a href="#" class="block py-2 text-slate-300 hover:text-white">Support</a>
+            <a href="#" class="block py-2 text-corporate-emerald font-semibold" data-i18n="nav_tracking">Tracking</a>
+            <a href="#" class="block py-2 text-slate-300 hover:text-white" data-i18n="nav_schedules">Schedules</a>
+            <a href="#" class="block py-2 text-slate-300 hover:text-white" data-i18n="nav_services">Services</a>
+            <a href="#" class="block py-2 text-slate-300 hover:text-white" data-i18n="nav_support">Support</a>
         </div>
     </header>
 
@@ -132,18 +160,18 @@
             <div class="max-w-4xl mx-auto space-y-4">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                     <div>
-                        <h1 class="text-2xl font-bold text-corporate-navy">Container & Cargo Tracking</h1>
-                        <p class="text-slate-500 text-xs sm:text-sm">Enter Bill of Lading (B/L), Container Number, or Waybill Reference ID.</p>
+                        <h1 class="text-2xl font-bold text-corporate-navy" data-i18n="title_cargo_tracking">Container & Cargo Tracking</h1>
+                        <p class="text-slate-500 text-xs sm:text-sm" data-i18n="subtitle_cargo_tracking">Enter Bill of Lading (B/L), Container Number, or Waybill Reference ID.</p>
                     </div>
                     <!-- Quick Actions -->
                     <div class="flex items-center space-x-2 pt-2 sm:pt-0">
                         <button onclick="triggerPrintAction()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold px-3 py-2 rounded-lg border border-slate-200 transition flex items-center space-x-1.5" title="Print Tracking Report">
                             <i class="fa-solid fa-print"></i>
-                            <span class="hidden sm:inline">Print</span>
+                            <span class="hidden sm:inline" data-i18n="btn_print">Print</span>
                         </button>
                         <button onclick="copyTrackingLink()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold px-3 py-2 rounded-lg border border-slate-200 transition flex items-center space-x-1.5" title="Copy Direct Tracking Link">
                             <i class="fa-solid fa-link"></i>
-                            <span class="hidden sm:inline">Copy Link</span>
+                            <span class="hidden sm:inline" data-i18n="btn_copy_link">Copy Link</span>
                         </button>
                     </div>
                 </div>
@@ -157,14 +185,14 @@
                     </div>
                     <button type="submit" class="bg-corporate-navy hover:bg-slate-800 text-white px-8 py-3 rounded-xl font-semibold text-sm transition shadow-md flex items-center justify-center space-x-2">
                         <i class="fa-solid fa-truck-fast"></i>
-                        <span>Track Cargo</span>
+                        <span data-i18n="btn_track_cargo">Track Cargo</span>
                     </button>
                 </form>
 
                 <!-- Preset Quick Buttons -->
                 <div class="flex items-center flex-wrap gap-2 text-xs text-slate-500 pt-1">
-                    <span class="font-medium">Active References:</span>
-                    <button onclick="resetSearch('GOF-2026-NRO-889')" class="bg-blue-50 text-blue-700 hover:bg-blue-100 font-mono font-semibold px-2.5 py-1 rounded-md border border-blue-200 transition">GOF-2026-NRO-889 (Granite Shipment)</button>
+                    <span class="font-medium" data-i18n="label_active_refs">Active References:</span>
+                    <button onclick="resetSearch('GOF-2026-NRO-889')" class="bg-blue-50 text-blue-700 hover:bg-blue-100 font-mono font-semibold px-2.5 py-1 rounded-md border border-blue-200 transition">GOF-2026-NRO-889 (<span data-i18n="preset_granite">Granite Shipment</span>)</button>
                     <button onclick="resetSearch('MSCU-901228-4')" class="bg-slate-100 text-slate-600 hover:bg-slate-200 font-mono px-2.5 py-1 rounded-md border border-slate-200 transition">MSCU-901228-4</button>
                 </div>
             </div>
@@ -173,7 +201,7 @@
         <!-- Loading State -->
         <div id="loadingState" class="hidden py-16 text-center space-y-3 bg-white rounded-2xl shadow-sm border border-slate-200">
             <div class="inline-block animate-spin rounded-full h-10 w-10 border-4 border-slate-200 border-t-corporate-emerald"></div>
-            <p class="text-sm font-medium text-slate-600">Retrieving satellite ocean telemetry & customs clearance data...</p>
+            <p class="text-sm font-medium text-slate-600" data-i18n="loading_text">Retrieving satellite ocean telemetry & customs clearance data...</p>
         </div>
 
         <!-- Main Tracking Dashboard -->
@@ -184,7 +212,7 @@
                 <!-- Status Header -->
                 <div class="bg-slate-900 text-white px-6 py-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-800">
                     <div class="flex flex-wrap items-center gap-3">
-                        <span class="text-xs text-slate-400 uppercase tracking-widest font-semibold">Waybill ID:</span>
+                        <span class="text-xs text-slate-400 uppercase tracking-widest font-semibold" data-i18n="label_waybill">Waybill ID:</span>
                         <span class="bg-slate-800 text-emerald-400 font-mono font-bold text-sm sm:text-base px-3 py-1 rounded-lg border border-slate-700">GOF-2026-NRO-889</span>
                         <span class="text-slate-500">|</span>
                         <span class="text-xs text-slate-300 font-mono">B/L-2026-IT889</span>
@@ -192,21 +220,21 @@
                     <div class="flex items-center space-x-3">
                         <span class="inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-extrabold bg-emerald-500 text-white shadow-sm tracking-wide">
                             <span class="w-2 h-2 mr-2 rounded-full bg-white animate-ping"></span>
-                            DELIVERED
+                            <span data-i18n="status_delivered">DELIVERED</span>
                         </span>
                     </div>
                 </div>
 
                 <!-- Visual Route Strip -->
                 <div class="bg-slate-50 p-6 border-b border-slate-200">
-                    <div class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-4">Intermodal Transportation Route</div>
+                    <div class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-4" data-i18n="label_route_title">Intermodal Transportation Route</div>
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 relative">
                         <!-- Origin -->
                         <div class="flex items-start space-x-3">
                             <div class="w-9 h-9 rounded-full bg-slate-200 text-slate-700 flex items-center justify-center font-bold text-xs shrink-0">IT</div>
                             <div>
-                                <div class="text-[11px] font-semibold text-slate-400 uppercase">Port of Loading</div>
-                                <div class="text-xs font-bold text-slate-800">Genoa, Italy</div>
+                                <div class="text-[11px] font-semibold text-slate-400 uppercase" data-i18n="label_pol">Port of Loading</div>
+                                <div class="text-xs font-bold text-slate-800" data-i18n="loc_genoa">Genoa, Italy</div>
                                 <div class="text-[10px] text-slate-500 font-mono">ITGOA • 20 Mar</div>
                             </div>
                         </div>
@@ -214,8 +242,8 @@
                         <div class="flex items-start space-x-3">
                             <div class="w-9 h-9 rounded-full bg-slate-200 text-slate-700 flex items-center justify-center font-bold text-xs shrink-0">SG</div>
                             <div>
-                                <div class="text-[11px] font-semibold text-slate-400 uppercase">Transit Hub</div>
-                                <div class="text-xs font-bold text-slate-800">Singapore</div>
+                                <div class="text-[11px] font-semibold text-slate-400 uppercase" data-i18n="label_hub">Transit Hub</div>
+                                <div class="text-xs font-bold text-slate-800" data-i18n="loc_singapore">Singapore</div>
                                 <div class="text-[10px] text-slate-500 font-mono">SGSIN • 15 Apr</div>
                             </div>
                         </div>
@@ -223,8 +251,8 @@
                         <div class="flex items-start space-x-3">
                             <div class="w-9 h-9 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center font-bold text-xs shrink-0">ID</div>
                             <div>
-                                <div class="text-[11px] font-semibold text-amber-700 uppercase">Port of Discharge</div>
-                                <div class="text-xs font-bold text-slate-800">Semarang (Tanjung Emas)</div>
+                                <div class="text-[11px] font-semibold text-amber-700 uppercase" data-i18n="label_pod">Port of Discharge</div>
+                                <div class="text-xs font-bold text-slate-800" data-i18n="loc_semarang">Semarang (Tanjung Emas)</div>
                                 <div class="text-[10px] text-slate-500 font-mono">IDSRG • 28 Apr</div>
                             </div>
                         </div>
@@ -234,8 +262,8 @@
                                 <i class="fa-solid fa-check"></i>
                             </div>
                             <div>
-                                <div class="text-[11px] font-semibold text-emerald-600 uppercase">Final Inland Dest.</div>
-                                <div class="text-xs font-bold text-slate-900">Surakarta, Central Java</div>
+                                <div class="text-[11px] font-semibold text-emerald-600 uppercase" data-i18n="label_final_dest">Final Inland Dest.</div>
+                                <div class="text-xs font-bold text-slate-900" data-i18n="loc_surakarta">Surakarta, Central Java</div>
                                 <div class="text-[10px] text-emerald-600 font-mono font-bold">IDSRA • 08 May</div>
                             </div>
                         </div>
@@ -245,24 +273,24 @@
                 <!-- Shipment Specifications Grid -->
                 <div class="p-6 sm:p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-xs">
                     <div class="bg-slate-50 p-4 rounded-xl border border-slate-200/80">
-                        <span class="text-slate-400 font-medium block uppercase text-[10px] tracking-wider mb-1">Commodity</span>
-                        <p class="font-bold text-slate-800 text-sm">Nero Assoluto Granite</p>
-                        <p class="text-slate-500 mt-0.5">Heavy Cargo (1 Industrial Pallet)</p>
+                        <span class="text-slate-400 font-medium block uppercase text-[10px] tracking-wider mb-1" data-i18n="spec_commodity">Commodity</span>
+                        <p class="font-bold text-slate-800 text-sm" data-i18n="spec_commodity_val">Nero Assoluto Granite</p>
+                        <p class="text-slate-500 mt-0.5" data-i18n="spec_commodity_sub">Heavy Cargo (1 Industrial Pallet)</p>
                     </div>
                     <div class="bg-slate-50 p-4 rounded-xl border border-slate-200/80">
-                        <span class="text-slate-400 font-medium block uppercase text-[10px] tracking-wider mb-1">Transport Mode</span>
-                        <p class="font-bold text-slate-800 text-sm">Ocean Freight (Sea-to-Land)</p>
-                        <p class="text-slate-500 mt-0.5">LCL / Priority Commercial Heavy</p>
+                        <span class="text-slate-400 font-medium block uppercase text-[10px] tracking-wider mb-1" data-i18n="spec_mode">Transport Mode</span>
+                        <p class="font-bold text-slate-800 text-sm" data-i18n="spec_mode_val">Ocean Freight (Sea-to-Land)</p>
+                        <p class="text-slate-500 mt-0.5" data-i18n="spec_mode_sub">LCL / Priority Commercial Heavy</p>
                     </div>
                     <div class="bg-slate-50 p-4 rounded-xl border border-slate-200/80">
-                        <span class="text-slate-400 font-medium block uppercase text-[10px] tracking-wider mb-1">Shipper (Exporter)</span>
+                        <span class="text-slate-400 font-medium block uppercase text-[10px] tracking-wider mb-1" data-i18n="spec_shipper">Shipper (Exporter)</span>
                         <p class="font-bold text-slate-800 text-sm">Marmo Italia S.p.A</p>
-                        <p class="text-slate-500 mt-0.5">Via Quarry 42, Genoa, Italy</p>
+                        <p class="text-slate-500 mt-0.5" data-i18n="spec_shipper_addr">Via Quarry 42, Genoa, Italy</p>
                     </div>
                     <div class="bg-slate-50 p-4 rounded-xl border border-slate-200/80">
-                        <span class="text-slate-400 font-medium block uppercase text-[10px] tracking-wider mb-1">Consignee (Importer)</span>
+                        <span class="text-slate-400 font-medium block uppercase text-[10px] tracking-wider mb-1" data-i18n="spec_consignee">Consignee (Importer)</span>
                         <p class="font-bold text-slate-800 text-sm">CV Abid Granit Internasional</p>
-                        <p class="text-slate-500 mt-0.5">Surakarta, Central Java, ID</p>
+                        <p class="text-slate-500 mt-0.5" data-i18n="spec_consignee_addr">Surakarta, Central Java, ID</p>
                     </div>
                 </div>
             </section>
@@ -271,19 +299,19 @@
             <div class="border-b border-slate-200 no-print flex space-x-8 text-xs font-bold overflow-x-auto">
                 <button onclick="switchTab('timelineTab')" id="btnTab-timelineTab" class="py-3 border-b-2 border-corporate-navy text-corporate-navy whitespace-nowrap transition flex items-center space-x-2">
                     <i class="fa-solid fa-list-check"></i>
-                    <span>Vertical Tracking Timeline</span>
+                    <span data-i18n="tab_timeline">Vertical Tracking Timeline</span>
                 </button>
                 <button onclick="switchTab('detailsTab')" id="btnTab-detailsTab" class="py-3 border-b-2 border-transparent text-slate-500 hover:text-slate-800 whitespace-nowrap transition flex items-center space-x-2">
                     <i class="fa-solid fa-file-contract"></i>
-                    <span>Cargo Details & Documents</span>
+                    <span data-i18n="tab_details">Cargo Details & Documents</span>
                 </button>
                 <button onclick="switchTab('mapTab')" id="btnTab-mapTab" class="py-3 border-b-2 border-transparent text-slate-500 hover:text-slate-800 whitespace-nowrap transition flex items-center space-x-2">
                     <i class="fa-solid fa-map-location-dot"></i>
-                    <span>Route Map View</span>
+                    <span data-i18n="tab_map">Route Map View</span>
                 </button>
                 <button onclick="switchTab('customsTab')" id="btnTab-customsTab" class="py-3 border-b-2 border-transparent text-slate-500 hover:text-slate-800 whitespace-nowrap transition flex items-center space-x-2">
                     <i class="fa-solid fa-shield-halved"></i>
-                    <span>Customs Clearance Audit</span>
+                    <span data-i18n="tab_customs">Customs Clearance Audit</span>
                 </button>
             </div>
 
@@ -292,13 +320,13 @@
                 <section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8">
                     <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-6 mb-8 border-b border-slate-200 gap-4">
                         <div>
-                            <h2 class="text-lg font-bold text-corporate-navy">Milestone Movement History</h2>
-                            <p class="text-xs text-slate-500">Real-time maritime events sorted from newest at top to oldest at bottom.</p>
+                            <h2 class="text-lg font-bold text-corporate-navy" data-i18n="timeline_heading">Milestone Movement History</h2>
+                            <p class="text-xs text-slate-500" data-i18n="timeline_sub">Real-time maritime events sorted from newest at top to oldest at bottom.</p>
                         </div>
                         <div class="flex items-center space-x-4 text-xs font-semibold">
-                            <span class="flex items-center space-x-1.5"><span class="w-3 h-3 rounded-full bg-corporate-emerald"></span><span class="text-slate-700">Completed</span></span>
-                            <span class="flex items-center space-x-1.5"><span class="w-3 h-3 rounded-full bg-corporate-crimson"></span><span class="text-slate-700">Critical Red Channel</span></span>
-                            <span class="flex items-center space-x-1.5"><span class="w-3 h-3 rounded-full bg-slate-300"></span><span class="text-slate-700">Transit / Ocean</span></span>
+                            <span class="flex items-center space-x-1.5"><span class="w-3 h-3 rounded-full bg-corporate-emerald"></span><span class="text-slate-700" data-i18n="legend_completed">Completed</span></span>
+                            <span class="flex items-center space-x-1.5"><span class="w-3 h-3 rounded-full bg-corporate-crimson"></span><span class="text-slate-700" data-i18n="legend_critical">Critical Red Channel</span></span>
+                            <span class="flex items-center space-x-1.5"><span class="w-3 h-3 rounded-full bg-slate-300"></span><span class="text-slate-700" data-i18n="legend_transit">Transit / Ocean</span></span>
                         </div>
                     </div>
 
@@ -314,17 +342,17 @@
                             <div class="flex-grow bg-emerald-50/70 border border-emerald-200 rounded-2xl p-5 shadow-sm">
                                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
                                     <div class="flex items-center space-x-2">
-                                        <h3 class="font-bold text-slate-900 text-sm sm:text-base">Delivered to Consignee Facility</h3>
-                                        <span class="bg-emerald-600 text-white text-[10px] font-extrabold px-2 py-0.5 rounded tracking-wide uppercase">Final Status</span>
+                                        <h3 class="font-bold text-slate-900 text-sm sm:text-base" data-i18n="t1_title">Delivered to Consignee Facility</h3>
+                                        <span class="bg-emerald-600 text-white text-[10px] font-extrabold px-2 py-0.5 rounded tracking-wide uppercase" data-i18n="badge_final">Final Status</span>
                                     </div>
                                     <span class="text-xs font-mono font-bold text-emerald-800 bg-white px-2.5 py-1 rounded-md border border-emerald-200">08 May 2026, 14:30</span>
                                 </div>
                                 <p class="text-xs font-semibold text-slate-600 mb-2 flex items-center space-x-1.5">
                                     <i class="fa-solid fa-location-dot text-corporate-emerald"></i>
                                     <span>Surakarta, Central Java, ID</span>
-                                    <span class="text-slate-400">• Facility: CV Abid Granit Warehouse</span>
+                                    <span class="text-slate-400" data-i18n="t1_fac">• Facility: CV Abid Granit Warehouse</span>
                                 </p>
-                                <p class="text-xs text-slate-600 bg-white p-3 rounded-xl border border-slate-200">
+                                <p class="text-xs text-slate-600 bg-white p-3 rounded-xl border border-slate-200" data-i18n="t1_desc">
                                     Cargo uncrated and inspected upon offloading. Final delivery receiver signature captured electronically. All clearance seals verified intact.
                                 </p>
                             </div>
@@ -338,15 +366,15 @@
                             </div>
                             <div class="flex-grow bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
                                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
-                                    <h3 class="font-bold text-slate-900 text-sm sm:text-base">Handed over to Domestic Trucking for Inland Transport</h3>
+                                    <h3 class="font-bold text-slate-900 text-sm sm:text-base" data-i18n="t2_title">Handed over to Domestic Trucking for Inland Transport</h3>
                                     <span class="text-xs font-mono font-bold text-slate-600 bg-slate-100 px-2.5 py-1 rounded-md border border-slate-200">05 May 2026, 10:00</span>
                                 </div>
                                 <p class="text-xs font-semibold text-slate-600 mb-2 flex items-center space-x-1.5">
                                     <i class="fa-solid fa-location-dot text-slate-400"></i>
                                     <span>Semarang, Central Java, ID</span>
-                                    <span class="text-slate-400">• Carrier: Trans-Java Express Logistics</span>
+                                    <span class="text-slate-400" data-i18n="t2_carrier">• Carrier: Trans-Java Express Logistics</span>
                                 </p>
-                                <p class="text-xs text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <p class="text-xs text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-200" data-i18n="t2_desc">
                                     Pallet loaded onto heavy flatbed truck (Vehicle No. H-8821-OA) following port gate release. Dispatched via Semarang-Solo toll corridor.
                                 </p>
                             </div>
@@ -360,15 +388,15 @@
                             </div>
                             <div class="flex-grow bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
                                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
-                                    <h3 class="font-bold text-slate-900 text-sm sm:text-base">Customs Clearance Completed / Released by Authority</h3>
+                                    <h3 class="font-bold text-slate-900 text-sm sm:text-base" data-i18n="t3_title">Customs Clearance Completed / Released by Authority</h3>
                                     <span class="text-xs font-mono font-bold text-slate-600 bg-slate-100 px-2.5 py-1 rounded-md border border-slate-200">05 May 2026, 09:15</span>
                                 </div>
                                 <p class="text-xs font-semibold text-slate-600 mb-2 flex items-center space-x-1.5">
                                     <i class="fa-solid fa-location-dot text-slate-400"></i>
                                     <span>Semarang, Central Java, ID</span>
-                                    <span class="text-slate-400">• Authority: Bea Cukai Tanjung Emas</span>
+                                    <span class="text-slate-400" data-i18n="t3_auth">• Authority: Bea Cukai Tanjung Emas</span>
                                 </p>
-                                <p class="text-xs text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <p class="text-xs text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-200" data-i18n="t3_desc">
                                     SPPB (Surat Persetujuan Pengeluaran Barang) issued. Import duty and VAT settlement confirmed. Red channel inspection hold officially closed.
                                 </p>
                             </div>
@@ -386,9 +414,9 @@
                                     <div class="flex items-center space-x-2">
                                         <span class="bg-corporate-crimson text-white text-[10px] font-extrabold px-2.5 py-0.5 rounded tracking-wide uppercase flex items-center space-x-1">
                                             <i class="fa-solid fa-triangle-exclamation"></i>
-                                            <span>CRITICAL STATUS</span>
+                                            <span data-i18n="badge_critical">CRITICAL STATUS</span>
                                         </span>
-                                        <h3 class="font-bold text-red-950 text-sm sm:text-base">Awaiting Customs Inspection / Red Channel</h3>
+                                        <h3 class="font-bold text-red-950 text-sm sm:text-base" data-i18n="t4_title">Awaiting Customs Inspection / Red Channel</h3>
                                     </div>
                                     <span class="text-xs font-mono font-bold text-red-800 bg-white px-2.5 py-1 rounded-md border border-red-300">01 May 2026, 08:00</span>
                                 </div>
@@ -400,14 +428,14 @@
                                 <div class="bg-white p-4 rounded-xl border border-red-200 space-y-2 text-xs">
                                     <div class="flex items-start space-x-2 text-red-800 font-bold">
                                         <i class="fa-solid fa-circle-exclamation mt-0.5 text-base"></i>
-                                        <span>PHYSICAL CUSTOMS HOLD (INSPECTION BAY 3)</span>
+                                        <span data-i18n="t4_box_title">PHYSICAL CUSTOMS HOLD (INSPECTION BAY 3)</span>
                                     </div>
-                                    <p class="text-slate-700 leading-relaxed">
+                                    <p class="text-slate-700 leading-relaxed" data-i18n="t4_desc">
                                         Shipment flagged under <strong class="text-red-900">Jalur Merah (Red Channel Customs Control)</strong> by Directorate General of Customs and Excise (Bea Cukai). Physical cargo opening and ultrasonic stone density verification required against HS Code <span class="font-mono bg-slate-100 px-1 py-0.5 rounded border">6802.93.00</span>.
                                     </p>
                                     <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
-                                        <span>Inspection Notice #: <strong class="font-mono text-slate-800">INSP-2026-BC-9920</strong></span>
-                                        <span class="text-red-700 font-semibold">Impact: +4 Days Schedule Adjustment</span>
+                                        <span><span data-i18n="t4_notice">Inspection Notice #:</span> <strong class="font-mono text-slate-800">INSP-2026-BC-9920</strong></span>
+                                        <span class="text-red-700 font-semibold" data-i18n="t4_impact">Impact: +4 Days Schedule Adjustment</span>
                                     </div>
                                 </div>
                             </div>
@@ -421,15 +449,15 @@
                             </div>
                             <div class="flex-grow bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
                                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
-                                    <h3 class="font-bold text-slate-900 text-sm sm:text-base">Vessel Arrived at Port of Discharge</h3>
+                                    <h3 class="font-bold text-slate-900 text-sm sm:text-base" data-i18n="t5_title">Vessel Arrived at Port of Discharge</h3>
                                     <span class="text-xs font-mono font-bold text-slate-600 bg-slate-100 px-2.5 py-1 rounded-md border border-slate-200">28 Apr 2026, 18:45</span>
                                 </div>
                                 <p class="text-xs font-semibold text-slate-600 mb-2 flex items-center space-x-1.5">
                                     <i class="fa-solid fa-location-dot text-slate-400"></i>
                                     <span>Port of Tanjung Emas, Semarang, ID</span>
-                                    <span class="text-slate-400">• Vessel: MSC LORETO v.412W</span>
+                                    <span class="text-slate-400" data-i18n="t5_vessel">• Vessel: MSC LORETO v.412W</span>
                                 </p>
-                                <p class="text-xs text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <p class="text-xs text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-200" data-i18n="t5_desc">
                                     Container unmoored and offloaded to port terminal stacking yard. Inward manifest registered with port authority.
                                 </p>
                             </div>
@@ -443,14 +471,14 @@
                             </div>
                             <div class="flex-grow bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
                                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
-                                    <h3 class="font-bold text-slate-900 text-sm sm:text-base">In Transit - Arrived at Transit Hub</h3>
+                                    <h3 class="font-bold text-slate-900 text-sm sm:text-base" data-i18n="t6_title">In Transit - Arrived at Transit Hub</h3>
                                     <span class="text-xs font-mono font-bold text-slate-600 bg-slate-100 px-2.5 py-1 rounded-md border border-slate-200">15 Apr 2026, 11:20</span>
                                 </div>
                                 <p class="text-xs font-semibold text-slate-600 mb-2 flex items-center space-x-1.5">
                                     <i class="fa-solid fa-location-dot text-slate-400"></i>
                                     <span>Port of Singapore, SG</span>
                                 </p>
-                                <p class="text-xs text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <p class="text-xs text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-200" data-i18n="t6_desc">
                                     Transshipment vessel transfer completed at PSA Singapore Terminal. Consolidated for final feeder transit to Central Java ports.
                                 </p>
                             </div>
@@ -464,14 +492,14 @@
                             </div>
                             <div class="flex-grow bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
                                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
-                                    <h3 class="font-bold text-slate-900 text-sm sm:text-base">Loaded on Vessel / Departed Origin</h3>
+                                    <h3 class="font-bold text-slate-900 text-sm sm:text-base" data-i18n="t7_title">Loaded on Vessel / Departed Origin</h3>
                                     <span class="text-xs font-mono font-bold text-slate-600 bg-slate-100 px-2.5 py-1 rounded-md border border-slate-200">20 Mar 2026, 10:00</span>
                                 </div>
                                 <p class="text-xs font-semibold text-slate-600 mb-2 flex items-center space-x-1.5">
                                     <i class="fa-solid fa-location-dot text-slate-400"></i>
                                     <span>Port of Genoa, Italy (ITGOA)</span>
                                 </p>
-                                <p class="text-xs text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <p class="text-xs text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-200" data-i18n="t7_desc">
                                     Heavy pallet secured inside marine container TGHU-902841-0. Vessel departed under Master Bill of Lading BL-2026-IT889.
                                 </p>
                             </div>
@@ -484,47 +512,47 @@
             <!-- TAB 2: CARGO DETAILS & DOCUMENTS -->
             <div id="tabContent-detailsTab" class="hidden space-y-6">
                 <section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8 space-y-6">
-                    <h2 class="text-lg font-bold text-corporate-navy border-b border-slate-200 pb-3">Shipment Manifest & Specifications</h2>
+                    <h2 class="text-lg font-bold text-corporate-navy border-b border-slate-200 pb-3" data-i18n="details_heading">Shipment Manifest & Specifications</h2>
                     
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs">
                         <div class="space-y-3">
-                            <h3 class="font-bold text-slate-700 uppercase tracking-wider text-[11px]">Weight & Dimensions</h3>
+                            <h3 class="font-bold text-slate-700 uppercase tracking-wider text-[11px]" data-i18n="spec_sec_weight">Weight & Dimensions</h3>
                             <div class="bg-slate-50 p-3.5 rounded-xl space-y-2 border border-slate-200">
-                                <div class="flex justify-between"><span class="text-slate-500">Gross Weight:</span><span class="font-bold font-mono text-slate-800">1,480.00 KG</span></div>
-                                <div class="flex justify-between"><span class="text-slate-500">Net Weight:</span><span class="font-bold font-mono text-slate-800">1,420.00 KG</span></div>
-                                <div class="flex justify-between"><span class="text-slate-500">Volume:</span><span class="font-bold font-mono text-slate-800">1.85 CBM</span></div>
-                                <div class="flex justify-between"><span class="text-slate-500">Package Count:</span><span class="font-bold text-slate-800">1 Wooden Crate Pallet</span></div>
+                                <div class="flex justify-between"><span class="text-slate-500" data-i18n="lbl_gross_wt">Gross Weight:</span><span class="font-bold font-mono text-slate-800">1,480.00 KG</span></div>
+                                <div class="flex justify-between"><span class="text-slate-500" data-i18n="lbl_net_wt">Net Weight:</span><span class="font-bold font-mono text-slate-800">1,420.00 KG</span></div>
+                                <div class="flex justify-between"><span class="text-slate-500" data-i18n="lbl_vol">Volume:</span><span class="font-bold font-mono text-slate-800">1.85 CBM</span></div>
+                                <div class="flex justify-between"><span class="text-slate-500" data-i18n="lbl_pkg_count">Package Count:</span><span class="font-bold text-slate-800" data-i18n="val_pkg_count">1 Wooden Crate Pallet</span></div>
                             </div>
                         </div>
                         <div class="space-y-3">
-                            <h3 class="font-bold text-slate-700 uppercase tracking-wider text-[11px]">Vessel & Booking Info</h3>
+                            <h3 class="font-bold text-slate-700 uppercase tracking-wider text-[11px]" data-i18n="spec_sec_vessel">Vessel & Booking Info</h3>
                             <div class="bg-slate-50 p-3.5 rounded-xl space-y-2 border border-slate-200">
-                                <div class="flex justify-between"><span class="text-slate-500">Vessel Name:</span><span class="font-bold text-slate-800">MSC LORETO</span></div>
-                                <div class="flex justify-between"><span class="text-slate-500">Voyage No:</span><span class="font-mono font-bold text-slate-800">412W</span></div>
-                                <div class="flex justify-between"><span class="text-slate-500">Container ID:</span><span class="font-mono font-bold text-slate-800">TGHU-902841-0</span></div>
-                                <div class="flex justify-between"><span class="text-slate-500">Seal Number:</span><span class="font-mono font-bold text-slate-800">IT-GNA-99812</span></div>
+                                <div class="flex justify-between"><span class="text-slate-500" data-i18n="lbl_vessel_name">Vessel Name:</span><span class="font-bold text-slate-800">MSC LORETO</span></div>
+                                <div class="flex justify-between"><span class="text-slate-500" data-i18n="lbl_voyage">Voyage No:</span><span class="font-mono font-bold text-slate-800">412W</span></div>
+                                <div class="flex justify-between"><span class="text-slate-500" data-i18n="lbl_container_id">Container ID:</span><span class="font-mono font-bold text-slate-800">TGHU-902841-0</span></div>
+                                <div class="flex justify-between"><span class="text-slate-500" data-i18n="lbl_seal_no">Seal Number:</span><span class="font-mono font-bold text-slate-800">IT-GNA-99812</span></div>
                             </div>
                         </div>
                         <div class="space-y-3">
-                            <h3 class="font-bold text-slate-700 uppercase tracking-wider text-[11px]">Compliance & Tariff</h3>
+                            <h3 class="font-bold text-slate-700 uppercase tracking-wider text-[11px]" data-i18n="spec_sec_compliance">Compliance & Tariff</h3>
                             <div class="bg-slate-50 p-3.5 rounded-xl space-y-2 border border-slate-200">
-                                <div class="flex justify-between"><span class="text-slate-500">HS Tariff Code:</span><span class="font-mono font-bold text-slate-800">6802.93.00</span></div>
-                                <div class="flex justify-between"><span class="text-slate-500">Incoterms:</span><span class="font-bold text-slate-800">CIF Semarang</span></div>
-                                <div class="flex justify-between"><span class="text-slate-500">ISPS Code:</span><span class="font-bold text-emerald-700">Compliant (Sec Level 1)</span></div>
-                                <div class="flex justify-between"><span class="text-slate-500">Fumigation:</span><span class="font-bold text-slate-800">Certified (ISPM 15)</span></div>
+                                <div class="flex justify-between"><span class="text-slate-500" data-i18n="lbl_hs_code">HS Tariff Code:</span><span class="font-mono font-bold text-slate-800">6802.93.00</span></div>
+                                <div class="flex justify-between"><span class="text-slate-500" data-i18n="lbl_incoterms">Incoterms:</span><span class="font-bold text-slate-800">CIF Semarang</span></div>
+                                <div class="flex justify-between"><span class="text-slate-500" data-i18n="lbl_isps">ISPS Code:</span><span class="font-bold text-emerald-700" data-i18n="val_isps">Compliant (Sec Level 1)</span></div>
+                                <div class="flex justify-between"><span class="text-slate-500" data-i18n="lbl_fumigation">Fumigation:</span><span class="font-bold text-slate-800" data-i18n="val_fumigation">Certified (ISPM 15)</span></div>
                             </div>
                         </div>
                     </div>
 
                     <div class="pt-4 border-t border-slate-200 space-y-3">
-                        <h3 class="font-bold text-slate-800 text-sm">Downloadable Maritime Documents</h3>
+                        <h3 class="font-bold text-slate-800 text-sm" data-i18n="docs_title">Downloadable Maritime Documents</h3>
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-xs">
                             <button onclick="simulateDownload('Proof_of_Delivery_GOF2026.pdf')" class="p-3 bg-slate-50 hover:bg-slate-100 rounded-xl border border-slate-200 flex items-center justify-between text-left transition">
                                 <div class="flex items-center space-x-3">
                                     <i class="fa-solid fa-file-pdf text-red-600 text-xl"></i>
                                     <div>
-                                        <div class="font-bold text-slate-800">Proof of Delivery (POD)</div>
-                                        <div class="text-[10px] text-slate-400">Signed • PDF (1.2 MB)</div>
+                                        <div class="font-bold text-slate-800" data-i18n="doc1_name">Proof of Delivery (POD)</div>
+                                        <div class="text-[10px] text-slate-400" data-i18n="doc1_sub">Signed • PDF (1.2 MB)</div>
                                     </div>
                                 </div>
                                 <i class="fa-solid fa-download text-slate-400"></i>
@@ -533,8 +561,8 @@
                                 <div class="flex items-center space-x-3">
                                     <i class="fa-solid fa-file-pdf text-blue-600 text-xl"></i>
                                     <div>
-                                        <div class="font-bold text-slate-800">Bill of Lading (B/L)</div>
-                                        <div class="text-[10px] text-slate-400">Original Master • PDF (2.4 MB)</div>
+                                        <div class="font-bold text-slate-800" data-i18n="doc2_name">Bill of Lading (B/L)</div>
+                                        <div class="text-[10px] text-slate-400" data-i18n="doc2_sub">Original Master • PDF (2.4 MB)</div>
                                     </div>
                                 </div>
                                 <i class="fa-solid fa-download text-slate-400"></i>
@@ -543,8 +571,8 @@
                                 <div class="flex items-center space-x-3">
                                     <i class="fa-solid fa-file-shield text-emerald-600 text-xl"></i>
                                     <div>
-                                        <div class="font-bold text-slate-800">Customs Release (SPPB)</div>
-                                        <div class="text-[10px] text-slate-400">Official Stamp • PDF (890 KB)</div>
+                                        <div class="font-bold text-slate-800" data-i18n="doc3_name">Customs Release (SPPB)</div>
+                                        <div class="text-[10px] text-slate-400" data-i18n="doc3_sub">Official Stamp • PDF (890 KB)</div>
                                     </div>
                                 </div>
                                 <i class="fa-solid fa-download text-slate-400"></i>
@@ -559,11 +587,11 @@
                 <section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8 space-y-4">
                     <div class="flex items-center justify-between">
                         <div>
-                            <h2 class="text-lg font-bold text-corporate-navy">Geographic Transit Vector</h2>
-                            <p class="text-xs text-slate-500">Waypoints across Mediterranean, Indian Ocean, Malacca Strait, and Java Sea.</p>
+                            <h2 class="text-lg font-bold text-corporate-navy" data-i18n="map_heading">Geographic Transit Vector</h2>
+                            <p class="text-xs text-slate-500" data-i18n="map_sub">Waypoints across Mediterranean, Indian Ocean, Malacca Strait, and Java Sea.</p>
                         </div>
                         <span class="bg-blue-50 text-blue-700 text-xs font-semibold px-3 py-1 rounded-md border border-blue-200">
-                            Total Distance: ~7,420 Nautical Miles
+                            <span data-i18n="map_distance">Total Distance:</span> ~7,420 NM
                         </span>
                     </div>
 
@@ -609,9 +637,9 @@
                         <div class="relative z-10 bg-slate-800/80 backdrop-blur p-3 rounded-xl border border-slate-700/60 flex flex-col sm:flex-row items-center justify-between text-xs gap-2">
                             <div class="flex items-center space-x-2 text-emerald-400">
                                 <i class="fa-solid fa-circle-check"></i>
-                                <span class="font-bold">Journey Fully Completed</span>
+                                <span class="font-bold" data-i18n="map_completed_status">Journey Fully Completed</span>
                             </div>
-                            <span class="text-slate-400 text-[11px]">Final inland leg executed via Trans-Java Toll Route</span>
+                            <span class="text-slate-400 text-[11px]" data-i18n="map_footer_note">Final inland leg executed via Trans-Java Toll Route</span>
                         </div>
                     </div>
                 </section>
@@ -622,10 +650,10 @@
                 <section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8 space-y-6">
                     <div class="flex items-center justify-between border-b border-slate-200 pb-4">
                         <div>
-                            <h2 class="text-lg font-bold text-corporate-navy">Customs & Regulatory Audit Trail</h2>
-                            <p class="text-xs text-slate-500">Official Directorate General of Customs and Excise (Bea Cukai) log.</p>
+                            <h2 class="text-lg font-bold text-corporate-navy" data-i18n="customs_heading">Customs & Regulatory Audit Trail</h2>
+                            <p class="text-xs text-slate-500" data-i18n="customs_sub">Official Directorate General of Customs and Excise (Bea Cukai) log.</p>
                         </div>
-                        <span class="bg-red-100 text-red-800 text-xs font-bold px-3 py-1 rounded-md border border-red-200">
+                        <span class="bg-red-100 text-red-800 text-xs font-bold px-3 py-1 rounded-md border border-red-200" data-i18n="customs_badge">
                             Jalur Merah (Red Channel Audit)
                         </span>
                     </div>
@@ -633,32 +661,32 @@
                     <div class="space-y-4 text-xs">
                         <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
                             <div class="flex justify-between font-bold text-slate-800">
-                                <span>1. Customs Import Notification (PIB)</span>
+                                <span data-i18n="c1_title">1. Customs Import Notification (PIB)</span>
                                 <span class="text-slate-500 font-mono">29 Apr 2026, 14:00</span>
                             </div>
-                            <p class="text-slate-600">Document submitted under PIB Registration No: <strong class="font-mono text-slate-800">009122-2026-BC-SRG</strong>. Initial duty calculations submitted.</p>
+                            <p class="text-slate-600" data-i18n="c1_desc">Document submitted under PIB Registration No: <strong class="font-mono text-slate-800">009122-2026-BC-SRG</strong>. Initial duty calculations submitted.</p>
                         </div>
 
                         <div class="p-4 bg-red-50 rounded-xl border border-red-200 space-y-2">
                             <div class="flex justify-between font-bold text-red-900">
                                 <span class="flex items-center space-x-1.5">
                                     <i class="fa-solid fa-triangle-exclamation text-red-600"></i>
-                                    <span>2. Physical Inspection Directive (Jalur Merah)</span>
+                                    <span data-i18n="c2_title">2. Physical Inspection Directive (Jalur Merah)</span>
                                 </span>
                                 <span class="text-red-700 font-mono">01 May 2026, 08:00</span>
                             </div>
-                            <p class="text-slate-700">System random sampling assigned shipment to Red Channel. Container moved to Tanjung Emas Inspection Area Bay 3. Uncrating and physical density sampling performed by Customs Officers.</p>
+                            <p class="text-slate-700" data-i18n="c2_desc">System random sampling assigned shipment to Red Channel. Container moved to Tanjung Emas Inspection Area Bay 3. Uncrating and physical density sampling performed by Customs Officers.</p>
                         </div>
 
                         <div class="p-4 bg-emerald-50 rounded-xl border border-emerald-200 space-y-2">
                             <div class="flex justify-between font-bold text-emerald-900">
                                 <span class="flex items-center space-x-1.5">
                                     <i class="fa-solid fa-circle-check text-emerald-600"></i>
-                                    <span>3. Formal Release Approval (SPPB Issued)</span>
+                                    <span data-i18n="c3_title">3. Formal Release Approval (SPPB Issued)</span>
                                 </span>
                                 <span class="text-emerald-700 font-mono">05 May 2026, 09:15</span>
                             </div>
-                            <p class="text-slate-700">Physical verification matched declare valuation and raw granite classification (HS 6802.93.00). Import taxes settled via Bank Mandiri Customs Portal. SPPB gate pass issued.</p>
+                            <p class="text-slate-700" data-i18n="c3_desc">Physical verification matched declare valuation and raw granite classification (HS 6802.93.00). Import taxes settled via Bank Mandiri Customs Portal. SPPB gate pass issued.</p>
                         </div>
                     </div>
                 </section>
@@ -679,7 +707,7 @@
                     </div>
                     <span class="font-extrabold text-base tracking-wider">GLOBAL-TRACK INTL</span>
                 </div>
-                <p class="text-slate-400 leading-relaxed">
+                <p class="text-slate-400 leading-relaxed" data-i18n="footer_about">
                     Enterprise logistics management, intermodal ocean cargo tracking, and global customs audit automation platform.
                 </p>
                 <div class="flex items-center space-x-3 text-slate-400 text-sm">
@@ -690,7 +718,7 @@
             </div>
 
             <div>
-                <h4 class="font-bold text-slate-200 uppercase tracking-wider mb-3 text-[11px]">Compliance & Standards</h4>
+                <h4 class="font-bold text-slate-200 uppercase tracking-wider mb-3 text-[11px]" data-i18n="footer_compliance">Compliance & Standards</h4>
                 <ul class="space-y-2 text-slate-400">
                     <li class="flex items-center space-x-2">
                         <i class="fa-solid fa-shield-halved text-emerald-400"></i>
@@ -708,7 +736,7 @@
             </div>
 
             <div>
-                <h4 class="font-bold text-slate-200 uppercase tracking-wider mb-3 text-[11px]">Global Network Control</h4>
+                <h4 class="font-bold text-slate-200 uppercase tracking-wider mb-3 text-[11px]" data-i18n="footer_network">Global Network Control</h4>
                 <p class="text-slate-400 leading-relaxed">
                     <strong>Asia-Pacific Hub:</strong><br>
                     Marina Bay Financial Centre, Tower 3<br>
@@ -718,17 +746,17 @@
             </div>
 
             <div>
-                <h4 class="font-bold text-slate-200 uppercase tracking-wider mb-3 text-[11px]">System Status</h4>
+                <h4 class="font-bold text-slate-200 uppercase tracking-wider mb-3 text-[11px]" data-i18n="footer_sys_status">System Status</h4>
                 <div class="bg-slate-800 p-3 rounded-xl border border-slate-700 space-y-2">
                     <div class="flex items-center justify-between">
-                        <span class="text-slate-300 font-medium">Ocean AIS Satellite:</span>
+                        <span class="text-slate-300 font-medium" data-i18n="sys_ais">Ocean AIS Satellite:</span>
                         <span class="text-emerald-400 font-bold">ONLINE</span>
                     </div>
                     <div class="flex items-center justify-between">
-                        <span class="text-slate-300 font-medium">Customs Gateway:</span>
+                        <span class="text-slate-300 font-medium" data-i18n="sys_customs">Customs Gateway:</span>
                         <span class="text-emerald-400 font-bold">ACTIVE</span>
                     </div>
-                    <div class="text-[10px] text-slate-500 border-t border-slate-700/60 pt-2">
+                    <div class="text-[10px] text-slate-500 border-t border-slate-700/60 pt-2" data-i18n="sys_encrypted">
                         Encrypted 256-Bit SSL Cargo Portal Session
                     </div>
                 </div>
@@ -747,8 +775,546 @@
         <span id="toastMessage">Action performed successfully.</span>
     </div>
 
-    <!-- JavaScript Interactions -->
+    <!-- JavaScript Interactions & Multi-Language i18n Engine -->
     <script>
+        // Internationalization Translations Dictionary
+        const translations = {
+            en: {
+                live_gateway: "Live Gateway",
+                sub_brand: "International Maritime & Intermodal",
+                nav_tracking: "Tracking",
+                nav_schedules: "Schedules",
+                nav_services: "Services",
+                nav_support: "Support",
+                title_cargo_tracking: "Container & Cargo Tracking",
+                subtitle_cargo_tracking: "Enter Bill of Lading (B/L), Container Number, or Waybill Reference ID.",
+                btn_print: "Print",
+                btn_copy_link: "Copy Link",
+                btn_track_cargo: "Track Cargo",
+                label_active_refs: "Active References:",
+                preset_granite: "Granite Shipment",
+                loading_text: "Retrieving satellite ocean telemetry & customs clearance data...",
+                label_waybill: "Waybill ID:",
+                status_delivered: "DELIVERED",
+                label_route_title: "Intermodal Transportation Route",
+                label_pol: "Port of Loading",
+                loc_genoa: "Genoa, Italy",
+                label_hub: "Transit Hub",
+                loc_singapore: "Singapore",
+                label_pod: "Port of Discharge",
+                loc_semarang: "Semarang (Tanjung Emas)",
+                label_final_dest: "Final Inland Dest.",
+                loc_surakarta: "Surakarta, Central Java",
+                spec_commodity: "Commodity",
+                spec_commodity_val: "Nero Assoluto Granite",
+                spec_commodity_sub: "Heavy Cargo (1 Industrial Pallet)",
+                spec_mode: "Transport Mode",
+                spec_mode_val: "Ocean Freight (Sea-to-Land)",
+                spec_mode_sub: "LCL / Priority Commercial Heavy",
+                spec_shipper: "Shipper (Exporter)",
+                spec_shipper_addr: "Via Quarry 42, Genoa, Italy",
+                spec_consignee: "Consignee (Importer)",
+                spec_consignee_addr: "Surakarta, Central Java, ID",
+                tab_timeline: "Vertical Tracking Timeline",
+                tab_details: "Cargo Details & Documents",
+                tab_map: "Route Map View",
+                tab_customs: "Customs Clearance Audit",
+                timeline_heading: "Milestone Movement History",
+                timeline_sub: "Real-time maritime events sorted from newest at top to oldest at bottom.",
+                legend_completed: "Completed",
+                legend_critical: "Critical Red Channel",
+                legend_transit: "Transit / Ocean",
+                t1_title: "Delivered to Consignee Facility",
+                badge_final: "Final Status",
+                t1_fac: "• Facility: CV Abid Granit Warehouse",
+                t1_desc: "Cargo uncrated and inspected upon offloading. Final delivery receiver signature captured electronically. All clearance seals verified intact.",
+                t2_title: "Handed over to Domestic Trucking for Inland Transport",
+                t2_carrier: "• Carrier: Trans-Java Express Logistics",
+                t2_desc: "Pallet loaded onto heavy flatbed truck (Vehicle No. H-8821-OA) following port gate release. Dispatched via Semarang-Solo toll corridor.",
+                t3_title: "Customs Clearance Completed / Released by Authority",
+                t3_auth: "• Authority: Bea Cukai Tanjung Emas",
+                t3_desc: "SPPB (Surat Persetujuan Pengeluaran Barang) issued. Import duty and VAT settlement confirmed. Red channel inspection hold officially closed.",
+                badge_critical: "CRITICAL STATUS",
+                t4_title: "Awaiting Customs Inspection / Red Channel",
+                t4_box_title: "PHYSICAL CUSTOMS HOLD (INSPECTION BAY 3)",
+                t4_desc: "Shipment flagged under Jalur Merah (Red Channel Customs Control) by Directorate General of Customs and Excise (Bea Cukai). Physical cargo opening and ultrasonic stone density verification required against HS Code 6802.93.00.",
+                t4_notice: "Inspection Notice #:",
+                t4_impact: "Impact: +4 Days Schedule Adjustment",
+                t5_title: "Vessel Arrived at Port of Discharge",
+                t5_vessel: "• Vessel: MSC LORETO v.412W",
+                t5_desc: "Container unmoored and offloaded to port terminal stacking yard. Inward manifest registered with port authority.",
+                t6_title: "In Transit - Arrived at Transit Hub",
+                t6_desc: "Transshipment vessel transfer completed at PSA Singapore Terminal. Consolidated for final feeder transit to Central Java ports.",
+                t7_title: "Loaded on Vessel / Departed Origin",
+                t7_desc: "Heavy pallet secured inside marine container TGHU-902841-0. Vessel departed under Master Bill of Lading BL-2026-IT889.",
+                details_heading: "Shipment Manifest & Specifications",
+                spec_sec_weight: "Weight & Dimensions",
+                lbl_gross_wt: "Gross Weight:",
+                lbl_net_wt: "Net Weight:",
+                lbl_vol: "Volume:",
+                lbl_pkg_count: "Package Count:",
+                val_pkg_count: "1 Wooden Crate Pallet",
+                spec_sec_vessel: "Vessel & Booking Info",
+                lbl_vessel_name: "Vessel Name:",
+                lbl_voyage: "Voyage No:",
+                lbl_container_id: "Container ID:",
+                lbl_seal_no: "Seal Number:",
+                spec_sec_compliance: "Compliance & Tariff",
+                lbl_hs_code: "HS Tariff Code:",
+                lbl_incoterms: "Incoterms:",
+                lbl_isps: "ISPS Code:",
+                val_isps: "Compliant (Sec Level 1)",
+                lbl_fumigation: "Fumigation:",
+                val_fumigation: "Certified (ISPM 15)",
+                docs_title: "Downloadable Maritime Documents",
+                doc1_name: "Proof of Delivery (POD)",
+                doc1_sub: "Signed • PDF (1.2 MB)",
+                doc2_name: "Bill of Lading (B/L)",
+                doc2_sub: "Original Master • PDF (2.4 MB)",
+                doc3_name: "Customs Release (SPPB)",
+                doc3_sub: "Official Stamp • PDF (890 KB)",
+                map_heading: "Geographic Transit Vector",
+                map_sub: "Waypoints across Mediterranean, Indian Ocean, Malacca Strait, and Java Sea.",
+                map_distance: "Total Distance:",
+                map_completed_status: "Journey Fully Completed",
+                map_footer_note: "Final inland leg executed via Trans-Java Toll Route",
+                customs_heading: "Customs & Regulatory Audit Trail",
+                customs_sub: "Official Directorate General of Customs and Excise (Bea Cukai) log.",
+                customs_badge: "Jalur Merah (Red Channel Audit)",
+                c1_title: "1. Customs Import Notification (PIB)",
+                c1_desc: "Document submitted under PIB Registration No: 009122-2026-BC-SRG. Initial duty calculations submitted.",
+                c2_title: "2. Physical Inspection Directive (Jalur Merah)",
+                c2_desc: "System random sampling assigned shipment to Red Channel. Container moved to Tanjung Emas Inspection Area Bay 3. Uncrating and physical density sampling performed by Customs Officers.",
+                c3_title: "3. Formal Release Approval (SPPB Issued)",
+                c3_desc: "Physical verification matched declare valuation and raw granite classification (HS 6802.93.00). Import taxes settled via Bank Mandiri Customs Portal. SPPB gate pass issued.",
+                footer_about: "Enterprise logistics management, intermodal ocean cargo tracking, and global customs audit automation platform.",
+                footer_compliance: "Compliance & Standards",
+                footer_network: "Global Network Control",
+                footer_sys_status: "System Status",
+                sys_ais: "Ocean AIS Satellite:",
+                sys_customs: "Customs Gateway:",
+                sys_encrypted: "Encrypted 256-Bit SSL Cargo Portal Session",
+                toast_loaded: "Loaded live cargo record for:",
+                toast_copied: "Direct tracking URL copied to clipboard!",
+                toast_print: "Preparing document print view...",
+                toast_download: "Downloading signed document:"
+            },
+            it: {
+                live_gateway: "Gateway Attivo",
+                sub_brand: "Marittimo Internazionale e Intermodale",
+                nav_tracking: "Tracciamento",
+                nav_schedules: "Orari Rotte",
+                nav_services: "Servizi",
+                nav_support: "Supporto",
+                title_cargo_tracking: "Tracciamento Container & Cargo",
+                subtitle_cargo_tracking: "Inserisci Polizza di Carico (B/L), Numero Container o Riferimento Lettera di Vettura.",
+                btn_print: "Stampa",
+                btn_copy_link: "Copia Link",
+                btn_track_cargo: "Traccia Cargo",
+                label_active_refs: "Riferimenti Attivi:",
+                preset_granite: "Spedizione Granito",
+                loading_text: "Recupero telemetria satellitare e dati doganali in corso...",
+                label_waybill: "ID Lettera di Vettura:",
+                status_delivered: "CONSEGNATO",
+                label_route_title: "Percorso Trasporto Intermodale",
+                label_pol: "Porto di Imbarco",
+                loc_genoa: "Genova, Italia",
+                label_hub: "Hub di Transito",
+                loc_singapore: "Singapore",
+                label_pod: "Porto di Sbarco",
+                loc_semarang: "Semarang (Tanjung Emas)",
+                label_final_dest: "Dest. Finale Interna",
+                loc_surakarta: "Surakarta, Giava Centrale",
+                spec_commodity: "Merce",
+                spec_commodity_val: "Granito Nero Assoluto",
+                spec_commodity_sub: "Carico Pesante (1 Pallet Industriale)",
+                spec_mode: "Modalità Trasporto",
+                spec_mode_val: "Spedizione Marittima (Mare-Terra)",
+                spec_mode_sub: "LCL / Carico Pesante Commerciale Prioritario",
+                spec_shipper: "Mittente (Esportatore)",
+                spec_shipper_addr: "Via Cava 42, Genova, Italia",
+                spec_consignee: "Destinatario (Importatore)",
+                spec_consignee_addr: "Surakarta, Giava Centrale, ID",
+                tab_timeline: "Cronologia Lineare Spedizione",
+                tab_details: "Dettagli Cargo & Documenti",
+                tab_map: "Mappa del Percorso",
+                tab_customs: "Audit Doganale",
+                timeline_heading: "Cronologia Movimenti e Fasi",
+                timeline_sub: "Eventi marittimi in tempo reale ordinati dal più recente al meno recente.",
+                legend_completed: "Completato",
+                legend_critical: "Ispezione Canale Rosso",
+                legend_transit: "In Transito / Mare",
+                t1_title: "Consegnato presso la Struttura del Destinatario",
+                badge_final: "Stato Finale",
+                t1_fac: "• Struttura: Magazzino CV Abid Granit",
+                t1_desc: "Merce disimballata e ispezionata al momento dello scarico. Firma del destinatario acquisita elettronicamente. Sigilli di sicurezza verificati intatti.",
+                t2_title: "Consegnato al Trasporto Camionistico Terrestre",
+                t2_carrier: "• Vettore: Trans-Java Express Logistics",
+                t2_desc: "Pallet caricato su camion pianale pesante (Veicolo H-8821-OA) dopo lo svincolo portuale. Spedito via corridoio autostradale Semarang-Solo.",
+                t3_title: "Sdoganamento Completato / Rilasciato dalle Autorità",
+                t3_auth: "• Autorità: Bea Cukai Tanjung Emas",
+                t3_desc: "Emesso SPPB (Approvazione di Svincolo Merci). Saldo dazi di importazione e IVA confermato. Blocco per ispezione canale rosso chiuso ufficialmente.",
+                badge_critical: "STATO CRITICO",
+                t4_title: "In Attesa di Ispezione Doganale / Canale Rosso",
+                t4_box_title: "BLOCCO DOGANALE FISICO (BAIA ISPEZIONE 3)",
+                t4_desc: "Spedizione bloccata sotto Jalur Merah (Controllo Doganale Canale Rosso) dalla Direzione Generale delle Dogane. Richiesta apertura fisica del carico e verifica densità pietra ultrasuoni per Codice HS 6802.93.00.",
+                t4_notice: "Avviso Ispezione #:",
+                t4_impact: "Impatto: +4 Giorni di Ritardo Previsto",
+                t5_title: "Nave Arrivata al Porto di Sbarco",
+                t5_vessel: "• Nave: MSC LORETO v.412W",
+                t5_desc: "Container scaricato e posizionato nel piazzale del terminal portuale. Manifesto di entrata registrato presso l'autorità portuale.",
+                t6_title: "In Transito - Arrivato all'Hub di Smistamento",
+                t6_desc: "Trasbordo nave completato presso il Terminal PSA di Singapore. Consolidato per il transito finale verso i porti di Giava Centrale.",
+                t7_title: "Caricato su Nave / Partito dall'Origine",
+                t7_desc: "Pallet pesante fissato all'interno del container TGHU-902841-0. Nave partita sotto la Polizza di Carico BL-2026-IT889.",
+                details_heading: "Manifesto Cargo & Specifiche Tecniche",
+                spec_sec_weight: "Peso & Dimensioni",
+                lbl_gross_wt: "Peso Lordo:",
+                lbl_net_wt: "Peso Netto:",
+                lbl_vol: "Volume:",
+                lbl_pkg_count: "Numero Colli:",
+                val_pkg_count: "1 Pallet in Cassa di Legno",
+                spec_sec_vessel: "Nave & Info Prenotazione",
+                lbl_vessel_name: "Nome Nave:",
+                lbl_voyage: "N. Viaggio:",
+                lbl_container_id: "ID Container:",
+                lbl_seal_no: "Numero Sigillo:",
+                spec_sec_compliance: "Conformità & Tariffe",
+                lbl_hs_code: "Codice Doganale HS:",
+                lbl_incoterms: "Incoterms:",
+                lbl_isps: "Codice ISPS:",
+                val_isps: "Conforme (Livello Sicurezza 1)",
+                lbl_fumigation: "Fumigazione:",
+                val_fumigation: "Certificata (ISPM 15)",
+                docs_title: "Documenti Marittimi Scaricabili",
+                doc1_name: "Prova di Consegna (POD)",
+                doc1_sub: "Firmato • PDF (1.2 MB)",
+                doc2_name: "Polizza di Carico (B/L)",
+                doc2_sub: "Originale Master • PDF (2.4 MB)",
+                doc3_name: "Svincolo Doganale (SPPB)",
+                doc3_sub: "Timbro Ufficiale • PDF (890 KB)",
+                map_heading: "Vettore Geografico di Transito",
+                map_sub: "Punti di passaggio attraverso Mediterraneo, Oceano Indiano, Stretto di Malacca e Mare di Giava.",
+                map_distance: "Distanza Totale:",
+                map_completed_status: "Viaggio Completato Con Successo",
+                map_footer_note: "Tratta finale terrestre eseguita via Autostrada Trans-Java",
+                customs_heading: "Audit e Registro Doganale",
+                customs_sub: "Registro ufficiale della Direzione Generale delle Dogane (Bea Cukai).",
+                customs_badge: "Jalur Merah (Canale Rosso Audit)",
+                c1_title: "1. Notifica Importazione Doganale (PIB)",
+                c1_desc: "Documento inviato con N. Registrazione PIB: 009122-2026-BC-SRG. Calcoli dazi iniziali inviati.",
+                c2_title: "2. Direttiva di Ispezione Fisica (Canale Rosso)",
+                c2_desc: "Campionamento casuale del sistema ha assegnato la spedizione al Canale Rosso. Container spostato all'Area Ispezione Baia 3. Apertura cassa e campionamento effettuati dagli ufficiali doganali.",
+                c3_title: "3. Approvazione Svincolo Ufficiale (SPPB Emesso)",
+                c3_desc: "La verifica fisica corrisponde alla valutazione dichiarata e alla classificazione del granito grezzo (HS 6802.93.00). Tasse saldate tramite Portale Mandiri. SPPB emesso.",
+                footer_about: "Gestione logistica aziendale, tracciamento cargo intermodale marittimo e piattaforma di automazione doganale.",
+                footer_compliance: "Conformità & Standard",
+                footer_network: "Controllo Rete Globale",
+                footer_sys_status: "Stato del Sistema",
+                sys_ais: "Satellite AIS Marittimo:",
+                sys_customs: "Gateway Doganale:",
+                sys_encrypted: "Sessione Portale Cifrata SSL 256-Bit",
+                toast_loaded: "Caricati dati spedizione in tempo reale per:",
+                toast_copied: "URL di tracciamento copiato negli appunti!",
+                toast_print: "Preparazione vista di stampa...",
+                toast_download: "Download documento firmato:"
+            },
+            id: {
+                live_gateway: "Gateway Aktif",
+                sub_brand: "Maritim Internasional & Intermodal",
+                nav_tracking: "Lacak Cargo",
+                nav_schedules: "Jadwal Kapal",
+                nav_services: "Layanan",
+                nav_support: "Bantuan",
+                title_cargo_tracking: "Pelacakan Kontainer & Kargo",
+                subtitle_cargo_tracking: "Masukkan Nomor Bill of Lading (B/L), Kontainer, atau ID Referensi Resi.",
+                btn_print: "Cetak",
+                btn_copy_link: "Salin Tautan",
+                btn_track_cargo: "Lacak Kargo",
+                label_active_refs: "Referensi Aktif:",
+                preset_granite: "Pengiriman Granit",
+                loading_text: "Mengambil data telemetri satelit laut & kepabeanan...",
+                label_waybill: "ID Resi Pengiriman:",
+                status_delivered: "TERKIRIM (DELIVERED)",
+                label_route_title: "Rute Transportasi Intermodal",
+                label_pol: "Pelabuhan Muat",
+                loc_genoa: "Genoa, Italia",
+                label_hub: "Hub Transit",
+                loc_singapore: "Singapura",
+                label_pod: "Pelabuhan Bongkar",
+                loc_semarang: "Semarang (Tanjung Emas)",
+                label_final_dest: "Tujuan Akhir Darat",
+                loc_surakarta: "Surakarta, Jawa Tengah",
+                spec_commodity: "Komoditas",
+                spec_commodity_val: "Granit Nero Assoluto",
+                spec_commodity_sub: "Kargo Berat (1 Palet Industri)",
+                spec_mode: "Mode Transportasi",
+                spec_mode_val: "Pengiriman Laut (Sea-to-Land)",
+                spec_mode_sub: "LCL / Kargo Berat Komersial Prioritas",
+                spec_shipper: "Pengirim (Eksportir)",
+                spec_shipper_addr: "Via Quarry 42, Genoa, Italia",
+                spec_consignee: "Penerima (Importir)",
+                spec_consignee_addr: "Surakarta, Jawa Tengah, ID",
+                tab_timeline: "Timeline Pelacakan Vertikal",
+                tab_details: "Detail Kargo & Dokumen",
+                tab_map: "Tampilan Peta Rute",
+                tab_customs: "Audit Kepabeanan (Bea Cukai)",
+                timeline_heading: "Riwayat Pergerakan Pengiriman",
+                timeline_sub: "Peristiwa maritim real-time diurutkan dari terbaru di atas hingga terlama di bawah.",
+                legend_completed: "Selesai",
+                legend_critical: "Pemeriksaan Jalur Merah",
+                legend_transit: "Dalam Transit / Laut",
+                t1_title: "Tiba dan Diterima di Gudang Consignee",
+                badge_final: "Status Akhir",
+                t1_fac: "• Fasilitas: Gudang CV Abid Granit",
+                t1_desc: "Kargo dibongkar dari peti kayu dan diperiksa. Tanda tangan penerima akhir ditangkap secara elektronik. Seluruh segel pengaman diverifikasi utuh.",
+                t2_title: "Diserahkan ke Truk Domestik untuk Transportasi Darat",
+                t2_carrier: "• Kurir Darat: Trans-Java Express Logistics",
+                t2_desc: "Palet dimuat ke truk flatbed berat (No. Pol H-8821-OA) setelah keluar gerbang pelabuhan. Diberangkatkan melalui koridor tol Semarang-Solo.",
+                t3_title: "Pemeriksaan Bea Cukai Selesai / Barang Dirilis",
+                t3_auth: "• Otoritas: Bea Cukai Tanjung Emas",
+                t3_desc: "SPPB (Surat Persetujuan Pengeluaran Barang) terbit. Pelunasan bea masuk dan PPN dikonfirmasi. Penahanan pemeriksaan jalur merah resmi ditutup.",
+                badge_critical: "STATUS KRITIS",
+                t4_title: "Menunggu Pemeriksaan Fisik Bea Cukai / Jalur Merah",
+                t4_box_title: "PENAHANAN FISIK BEA CUKAI (BAY PEMERIKSAAN 3)",
+                t4_desc: "Pengiriman terkena Jalur Merah oleh Direktorat Jenderal Bea dan Cukai. Pembukaan fisik peti kayu dan verifikasi kepadatan batu ultrasonik diperlukan untuk HS Code 6802.93.00.",
+                t4_notice: "No. Surat Pemberitahuan Inspection:",
+                t4_impact: "Dampak: +4 Hari Penyesuaian Jadwal",
+                t5_title: "Kapal Tiba di Pelabuhan Bongkar",
+                t5_vessel: "• Kapal: MSC LORETO v.412W",
+                t5_desc: "Kontainer diturunkan dari kapal ke lapangan penumpukan terminal pelabuhan. Manifest kedatangan terdaftar di otoritas pelabuhan.",
+                t6_title: "Dalam Transit - Tiba di Hub Transit",
+                t6_desc: "Proses transshipment pindah kapal selesai di Terminal PSA Singapura. Dikonsolidasikan untuk pelayaran feeder akhir ke pelabuhan Jawa Tengah.",
+                t7_title: "Dimuat ke Kapal / Berangkat dari Pelabuhan Asal",
+                t7_desc: "Pallet berat diamankan di dalam kontainer laut TGHU-902841-0. Kapal berangkat menggunakan Master Bill of Lading BL-2026-IT889.",
+                details_heading: "Manifest Kargo & Spesifikasi Teknis",
+                spec_sec_weight: "Berat & Dimensi",
+                lbl_gross_wt: "Berat Kotor:",
+                lbl_net_wt: "Berat Bersih:",
+                lbl_vol: "Volume:",
+                lbl_pkg_count: "Jumlah Kemasan:",
+                val_pkg_count: "1 Palet Peti Kayu",
+                spec_sec_vessel: "Informasi Kapal & Booking",
+                lbl_vessel_name: "Nama Kapal:",
+                lbl_voyage: "No. Pelayaran:",
+                lbl_container_id: "ID Kontainer:",
+                lbl_seal_no: "Nomor Segel:",
+                spec_sec_compliance: "Kepatuhan & Tarif",
+                lbl_hs_code: "Kode Tarif HS:",
+                lbl_incoterms: "Incoterms:",
+                lbl_isps: "Kode ISPS:",
+                val_isps: "Patuh (Keamanan Level 1)",
+                lbl_fumigation: "Fumigasi:",
+                val_fumigation: "Tersertifikasi (ISPM 15)",
+                docs_title: "Dokumen Maritim yang Dapat Diunduh",
+                doc1_name: "Bukti Pengiriman (POD)",
+                doc1_sub: "Ditandatangani • PDF (1.2 MB)",
+                doc2_name: "Bill of Lading (B/L)",
+                doc2_sub: "Master Asli • PDF (2.4 MB)",
+                doc3_name: "Surat Persetujuan Pengeluaran Barang (SPPB)",
+                doc3_sub: "Stempel Resmi • PDF (890 KB)",
+                map_heading: "Vektor Rute Geografis",
+                map_sub: "Titik koordinat perlintasan Laut Mediterania, Samudra Hindia, Selat Malaka, dan Laut Jawa.",
+                map_distance: "Total Jarak Tempuh:",
+                map_completed_status: "Perjalanan Telah Selesai Sepenuhnya",
+                map_footer_note: "Pengiriman darat akhir dilakukan melalui Jalur Tol Trans-Jawa",
+                customs_heading: "Catatan Audit Kepabeanan & Regulasi",
+                customs_sub: "Log resmi dari Direktorat Jenderal Bea dan Cukai (DJBC).",
+                customs_badge: "Audit Jalur Merah",
+                c1_title: "1. Pemberitahuan Impor Barang (PIB)",
+                c1_desc: "Dokumen diajukan dengan No. Registrasi PIB: 009122-2026-BC-SRG. Perhitungan bea masuk awal diserahkan.",
+                c2_title: "2. Instruksi Pemeriksaan Fisik (Jalur Merah)",
+                c2_desc: "Sistem acak mengarahkan pengiriman ke Jalur Merah. Kontainer dipindahkan ke Area Pemeriksaan Tanjung Emas Bay 3. Pembongkaran kayu dan sampel pemeriksaan dilakukan oleh Petugas Bea Cukai.",
+                c3_title: "3. Persetujuan Pengeluaran Barang (SPPB Terbit)",
+                c3_desc: "Pemeriksaan fisik sesuai dengan nilai deklarasi dan klasifikasi batu granit alam (HS 6802.93.00). Pajak impor dilunasi via Portal Bank Mandiri. SPPB diterbitkan.",
+                footer_about: "Sistem manajemen logistik enterprise, pelacakan kargo laut intermodal, dan otomatisasi audit kepabeanan global.",
+                footer_compliance: "Kepatuhan & Standar",
+                footer_network: "Jaringan Kontrol Global",
+                footer_sys_status: "Status Sistem",
+                sys_ais: "Satelit AIS Maritim:",
+                sys_customs: "Gateway Bea Cukai:",
+                sys_encrypted: "Sesi Portal Terenkripsi SSL 256-Bit",
+                toast_loaded: "Berhasil memuat data kargo untuk:",
+                toast_copied: "Tautan pelacakan berhasil disalin!",
+                toast_print: "Menyiapkan tampilan cetak...",
+                toast_download: "Mengunduh dokumen terverifikasi:"
+            },
+            zh: {
+                live_gateway: "实时数据网关",
+                sub_brand: "国际海运与多式联运系统",
+                nav_tracking: "货物追踪",
+                nav_schedules: "航线班期",
+                nav_services: "服务项目",
+                nav_support: "客户支援",
+                title_cargo_tracking: "集装箱与货物追踪",
+                subtitle_cargo_tracking: "请输入提单号 (B/L)、集装箱号或运单参考编号。",
+                btn_print: "打印报告",
+                btn_copy_link: "复制链接",
+                btn_track_cargo: "查询追踪",
+                label_active_refs: "当前有效单号:",
+                preset_granite: "花岗岩货物",
+                loading_text: "正在调取卫星海洋遥测与海关通关实时数据...",
+                label_waybill: "运单编号:",
+                status_delivered: "已送达 (DELIVERED)",
+                label_route_title: "多式联运运输路线",
+                label_pol: "起运港 (POL)",
+                loc_genoa: "热那亚, 意大利",
+                label_hub: "中转枢纽",
+                loc_singapore: "新加坡",
+                label_pod: "卸货港 (POD)",
+                loc_semarang: "三宝垄 (Tanjung Emas)",
+                label_final_dest: "最终内陆目的地",
+                loc_surakarta: "梭罗 (Surakarta), 中爪哇",
+                spec_commodity: "货物品名",
+                spec_commodity_val: "Nero Assoluto 黑金沙花岗岩",
+                spec_commodity_sub: "重型货物 (1件工业托盘)",
+                spec_mode: "运输模式",
+                spec_mode_val: "海陆联运 (Sea-to-Land)",
+                spec_mode_sub: "散货拼箱 / 优先商业重卡",
+                spec_shipper: "发货人 (出口商)",
+                spec_shipper_addr: "Via Quarry 42, 热那亚, 意大利",
+                spec_consignee: "收货人 (进口商)",
+                spec_consignee_addr: "梭罗, 中爪哇, 印度尼西亚",
+                tab_timeline: "垂直追踪时间轴",
+                tab_details: "货物详情与海运文件",
+                tab_map: "航线地图视图",
+                tab_customs: "海关清关稽核记录",
+                timeline_heading: "里程碑动态历史记录",
+                timeline_sub: "实时海运动态（从最新至最早期事件排序）。",
+                legend_completed: "已完成",
+                legend_critical: "红通道海关查验",
+                legend_transit: "运输中 / 在途",
+                t1_title: "已安全送达收货人仓库",
+                badge_final: "最终状态",
+                t1_fac: "• 交付地点: CV Abid Granit 仓库",
+                t1_desc: "货物卸载后已开箱开包查验。收货人电子签收完成，所有海关与运输封条核对无误且完好。",
+                t2_title: "已移交内陆陆运车队",
+                t2_carrier: "• 承运商: Trans-Java Express Logistics",
+                t2_desc: "码头放行后，托盘已装载至重型平板卡车（车牌号 H-8821-OA），经三宝垄-梭罗高速公路发运。",
+                t3_title: "海关清关完毕 / 官方已放行",
+                t3_auth: "• 机构: Tanjung Emas 海关局",
+                t3_desc: "已颁发 SPPB (货物放行批准书)。进口关税与增值税缴纳完毕，红通道查验状态正式解除。",
+                badge_critical: "关键异常状态",
+                t4_title: "等待海关物理查验 / 红通道指令",
+                t4_box_title: "海关物理扣留查验 (3号查验区)",
+                t4_desc: "货物被印度尼西亚海关总署 (Bea Cukai) 抽查并划入 Jalur Merah (红通道指令)。需对 HS 编码 6802.93.00 进行开箱拆包与超声波石材密度检测。",
+                t4_notice: "查验通知单号:",
+                t4_impact: "影响评估: 船期预估延迟4天",
+                t5_title: "运输船舶已抵达卸货港",
+                t5_vessel: "• 船名航次: MSC LORETO v.412W",
+                t5_desc: "集装箱已解卸并移至码头堆场，进口舱单已在港务局完成登记。",
+                t6_title: "中转中 - 抵达新加坡中转枢纽",
+                t6_desc: "在 PSA 新加坡码头完成转运换船，重新集港准备发往爪哇岛支线港口。",
+                t7_title: "已装船 / 离开起运港",
+                t7_desc: "重型托盘加固装入海运集装箱 TGHU-902841-0，船舶根据母港提单 BL-2026-IT889 离港。",
+                details_heading: "舱单数据与技术规格",
+                spec_sec_weight: "重量与体积",
+                lbl_gross_wt: "毛重:",
+                lbl_net_wt: "净重:",
+                lbl_vol: "体积:",
+                lbl_pkg_count: "包装数量:",
+                val_pkg_count: "1件木箱托盘",
+                spec_sec_vessel: "船舶与订舱信息",
+                lbl_vessel_name: "船舶名称:",
+                lbl_voyage: "航次:",
+                lbl_container_id: "集装箱号:",
+                lbl_seal_no: "铅封号码:",
+                spec_sec_compliance: "合规与税率",
+                lbl_hs_code: "海关编码 (HS):",
+                lbl_incoterms: "贸易术语:",
+                lbl_isps: "ISPS 认证:",
+                val_isps: "符合标准 (安保级别 1)",
+                lbl_fumigation: "熏蒸处理:",
+                val_fumigation: "已认证 (ISPM 15)",
+                docs_title: "海运文件下载",
+                doc1_name: "交付凭证 (POD)",
+                doc1_sub: "已电子签收 • PDF (1.2 MB)",
+                doc2_name: "正本提单 (B/L)",
+                doc2_sub: "船公司Master单 • PDF (2.4 MB)",
+                doc3_name: "海关放行条 (SPPB)",
+                doc3_sub: "盖章文件 • PDF (890 KB)",
+                map_heading: "地理运输航线矢量",
+                map_sub: "横跨地中海、印度洋、马六甲海峡及爪哇海的航行节点。",
+                map_distance: "总航程距离:",
+                map_completed_status: "全程运输已圆满完成",
+                map_footer_note: "末端内陆段通过跨爪哇高速公路完成配送",
+                customs_heading: "海关稽核与监管日志",
+                customs_sub: "印度尼西亚海关总署 (Bea Cukai) 官方记录。",
+                customs_badge: "红通道查验稽核",
+                c1_title: "1. 进口报关单提交 (PIB)",
+                c1_desc: "报关单登记号: 009122-2026-BC-SRG，预录入关税申报完成。",
+                c2_title: "2. 物理查验指令 (红通道 Jalur Merah)",
+                c2_desc: "系统随机抽检将货物划入红通道。集装箱移至 Tanjung Emas 3号查验区，海关官员执行开箱及石材物理采样。",
+                c3_title: "3. 官方放行批准 (SPPB 发放)",
+                c3_desc: "开箱实验与申报价值及天然花岗岩编码 (HS 6802.93.00) 完全一致。进口税费已通过 Mandiri 银行付清，放行条 (SPPB) 已颁发。",
+                footer_about: "企业级物流管理、多式联运海运货物追踪及全球海关稽核自动化平台。",
+                footer_compliance: "合规与认证标准",
+                footer_network: "全球网络控制中心",
+                footer_sys_status: "系统运行状态",
+                sys_ais: "海运 AIS 卫星:",
+                sys_customs: "海关数据网关:",
+                sys_encrypted: "256位 SSL 加密传输",
+                toast_loaded: "已成功加载实时货物记录:",
+                toast_copied: "追踪链接已成功复制到剪贴板！",
+                toast_print: "正在准备打印报告视图...",
+                toast_download: "正在下载已验证文件:"
+            }
+        };
+
+        let currentLang = 'en';
+
+        // Toggle Language Menu Dropdown
+        function toggleLangDropdown(event) {
+            event.stopPropagation();
+            const menu = document.getElementById('langDropdownMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Close Dropdown when clicking outside
+        window.addEventListener('click', function() {
+            const menu = document.getElementById('langDropdownMenu');
+            if (menu && !menu.classList.contains('hidden')) {
+                menu.classList.add('hidden');
+            }
+        });
+
+        // Switch Active Language Function
+        function selectLanguage(langKey) {
+            if (!translations[langKey]) return;
+            currentLang = langKey;
+            localStorage.setItem('globaltrack_lang', langKey);
+
+            // Update Label Display
+            const langLabels = {
+                en: "English (EN)",
+                it: "Italiano (IT)",
+                id: "Bahasa Indonesia (ID)",
+                zh: "中文 (ZH)"
+            };
+            document.getElementById('currentLangLabel').textContent = langLabels[langKey];
+            document.getElementById('mobileLangSelect').value = langKey;
+
+            // Translate all elements with data-i18n attribute
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[langKey][key]) {
+                    el.textContent = translations[langKey][key];
+                }
+            });
+
+            // Update placeholder in search input
+            document.getElementById('searchInput').placeholder = "GOF-2026-NRO-889";
+
+            showToast(`${langLabels[langKey]} language activated`);
+        }
+
+        // Initialize Language Preference on Load
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('globaltrack_lang') || 'en';
+            selectLanguage(savedLang);
+        });
+
         // Toggle Mobile Navigation
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
@@ -757,7 +1323,6 @@
 
         // Tab Switching Logic
         function switchTab(tabId) {
-            // Hide all tab contents
             ['timelineTab', 'detailsTab', 'mapTab', 'customsTab'].forEach(id => {
                 document.getElementById('tabContent-' + id).classList.add('hidden');
                 const btn = document.getElementById('btnTab-' + id);
@@ -765,7 +1330,6 @@
                 btn.classList.add('border-transparent', 'text-slate-500');
             });
 
-            // Show active content
             document.getElementById('tabContent-' + tabId).classList.remove('hidden');
             const activeBtn = document.getElementById('btnTab-' + tabId);
             activeBtn.classList.remove('border-transparent', 'text-slate-500');
@@ -786,7 +1350,8 @@
             setTimeout(() => {
                 loading.classList.add('hidden');
                 results.classList.remove('opacity-30');
-                showToast(`Loaded live cargo record for: ${inputVal}`);
+                const prefix = translations[currentLang].toast_loaded || "Loaded live cargo record for:";
+                showToast(`${prefix} ${inputVal}`);
             }, 650);
         }
 
@@ -801,7 +1366,7 @@
             const link = window.location.href;
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(link).then(() => {
-                    showToast("Direct tracking URL copied to clipboard!");
+                    showToast(translations[currentLang].toast_copied);
                 }).catch(() => fallbackCopy(link));
             } else {
                 fallbackCopy(link);
@@ -815,12 +1380,12 @@
             el.select();
             document.execCommand('copy');
             document.body.removeChild(el);
-            showToast("Direct tracking URL copied to clipboard!");
+            showToast(translations[currentLang].toast_copied);
         }
 
         // Print Tracking Report
         function triggerPrintAction() {
-            showToast("Preparing document print view...");
+            showToast(translations[currentLang].toast_print);
             setTimeout(() => {
                 window.print();
             }, 400);
@@ -828,7 +1393,8 @@
 
         // Simulate Document Download
         function simulateDownload(filename) {
-            showToast(`Downloading signed document: ${filename}`);
+            const prefix = translations[currentLang].toast_download || "Downloading signed document:";
+            showToast(`${prefix} ${filename}`);
         }
 
         // Display Toast Notification
